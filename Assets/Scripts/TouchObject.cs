@@ -36,9 +36,10 @@ public class TouchObject : MonoBehaviour
 
         Vector3 movePos =  MousePosition - origMousePos;
 
-        Debug.Log(movePos);
+ 
         //선 위치 후 판단
-        this.gameObject.transform.position = new Vector3(origTargetPos.x, origTargetPos.y+movePos.y,origTargetPos.z);   
+        // this.gameObject.transform.position = new Vector3(origTargetPos.x, origTargetPos.y+movePos.y,origTargetPos.z);   
+        this.gameObject.transform.Translate( new Vector3(0, movePos.y *0.01f,0));   
 
         if( this.gameObject.transform.localPosition.y < -boundaryTrans.rect.height/2 ){
             this.gameObject.transform.localPosition = new Vector3(origTargetPos.x, -boundaryTrans.rect.height/2,origTargetPos.z);   
@@ -48,11 +49,11 @@ public class TouchObject : MonoBehaviour
         }      
                  
     }
-    void OnMouseUp(){
-        if(targetTrans !=  null){
-                targetTrans.position = new Vector3(origTargetPos.x,origTargetPos.y,origTargetPos.z);
-            }
+    // void OnMouseUp(){
+    //     if(targetTrans !=  null){
+    //             targetTrans.position = new Vector3(origTargetPos.x,origTargetPos.y,origTargetPos.z);
+    //         }
             
-            targetTrans = null;    
-    }
+    //         targetTrans = null;    
+    // }
 }
