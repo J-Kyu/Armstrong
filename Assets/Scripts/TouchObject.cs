@@ -6,7 +6,7 @@ public class TouchObject : MonoBehaviour
 {
     private Vector3 MousePosition;
 
-    private Transform targetPos;
+    private Transform targetTrans;
 
     public Vector3 origMousePos{get;set;}
     public Vector3 origTargetPos{get;set;}
@@ -20,12 +20,12 @@ public class TouchObject : MonoBehaviour
         MousePosition = Input.mousePosition;
         MousePosition = Camera.main.ScreenToWorldPoint(MousePosition);
 
-        Debug.Log(MousePosition);
-
-        targetPos = this.gameObject.transform;
+        
+        targetTrans = this.gameObject.transform;
 
         origMousePos = new Vector3(MousePosition.x,MousePosition.y,MousePosition.z);
-        origTargetPos = new Vector3(targetPos.position.x,targetPos.position.y,targetPos.position.z);       
+        origTargetPos = new Vector3(targetTrans.position.x,targetTrans.position.y,targetTrans.position.z);       
+        Debug.Log(origTargetPos);
         
     }
 
@@ -36,8 +36,9 @@ public class TouchObject : MonoBehaviour
 
         Vector3 movePos =  MousePosition - origMousePos;
 
+        Debug.Log(movePos);
         //선 위치 후 판단
-        this.gameObject.transform.position = new Vector3(origTargetPos.x, origTargetPos.x+movePos.y,origTargetPos.z);   
+        this.gameObject.transform.position = new Vector3(origTargetPos.x, origTargetPos.y+movePos.y,origTargetPos.z);   
 
         if( this.gameObject.transform.localPosition.y < -boundaryTrans.rect.height/2 ){
             this.gameObject.transform.localPosition = new Vector3(origTargetPos.x, -boundaryTrans.rect.height/2,origTargetPos.z);   
@@ -48,10 +49,10 @@ public class TouchObject : MonoBehaviour
                  
     }
     void OnMouseUp(){
-        if(targetPos !=  null){
-                targetPos.position = new Vector3(origTargetPos.x,origTargetPos.y,origTargetPos.z);
+        if(targetTrans !=  null){
+                targetTrans.position = new Vector3(origTargetPos.x,origTargetPos.y,origTargetPos.z);
             }
             
-            targetPos = null;    
+            targetTrans = null;    
     }
 }
