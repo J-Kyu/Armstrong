@@ -1,2 +1,0 @@
-# Armstrong
-Unity Simple Game
