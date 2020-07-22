@@ -25,8 +25,8 @@ public class ProjectBuilder
     static void GenericBuild(string[] scenes, string target_path, BuildTarget build_target, BuildOptions build_options)
 	{
 		EditorUserBuildSettings.SwitchActiveBuildTarget(build_target);
-		string res = BuildPipeline.BuildPlayer(scenes, target_path, build_target, build_options);
-		if (res.Length > 0) {
+		var res = BuildPipeline.BuildPlayer(scenes, target_path, build_target, build_options);
+		if (res.ToString().Length > 0) {
 			throw new Exception("BuildPlayer failure: " + res);
 		}
 	}
@@ -54,7 +54,7 @@ public class ProjectBuilder
 		Directory.CreateDirectory(TARGET_DIR + "/iOS");
 
 		string BUILD_TARGET_PATH = buildDirectory + "/iOS";
-		GenericBuild(SCENES, BUILD_TARGET_PATH, BuildTarget.iPhone, opt);
+		GenericBuild(SCENES, BUILD_TARGET_PATH, BuildTarget.iOS, opt);
 	}
 	
 
