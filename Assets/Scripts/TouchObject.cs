@@ -9,11 +9,6 @@ public class TouchObject : MonoBehaviour
 
     float MaxDistance = 150f;
     Vector3 MousePosition;
-    Camera camera;
-    private HashSet<Transform> target;
-
-    private Vector3 origMousePos;
-    private Vector3 origTargetPos;
 
     private Color orgColor = new Color (0,1,0);
 
@@ -24,19 +19,6 @@ public class TouchObject : MonoBehaviour
 
 
 
-    void Awake()
-    {
-        width = (float)Screen.width / 2.0f;
-        height = (float)Screen.height / 2.0f;
-
-        // Position used for the cube.
-        position = new Vector3(0.0f, 0.0f, 0.0f);
-    }
-     void Start()
-    {
-        camera = GetComponent<Camera>();
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -45,26 +27,41 @@ public class TouchObject : MonoBehaviour
 
         if (Input.touchCount > 0)
         {
+
+            
             for(int i = 0; i < Input.touchCount; i++){
    
 
-                // The pos of the touch on the screen
-                Vector2 vTouchPos = Input.GetTouch(i).position;
-                    
-                // The ray to the touched object in the world
-                Ray ray = Camera.main.ScreenPointToRay(vTouchPos);
-                    
-                // Your raycast handling
-                RaycastHit vHit;
-                Debug.DrawRay(ray.origin,ray.direction*MaxDistance, Color.red, 0.3f);
+                Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
 
-                if(Physics.Raycast(ray.origin,ray.direction, out vHit))
+                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position), Vector2.zero);
+  
+                // Debug.DrawRay(ray.origin,ray.direction*MaxDistance, Color.red, 0.3f);
+                if (hit.collider != null && Input.GetTouch(i).phase == TouchPhase.Began)
                 {
-                    if(vHit.transform.tag == "Chair") 
+                    // Construct a ray from the current touch coordinates
+
+                    // RaycastHit2D can be either true or null, but has an implicit conversion to bool, so we can use it like this
+                    if(hit.collider.transform.tag == "Chair")
                     {
-                        vHit.transform.position = new Vector3(vTouchPos.x,vTouchPos.y,0);
+                        orgColor = hit.collider.transform.GetComponent<Image>().color;
+                        hit.collider.transform.GetComponent<Image>().color  = new Color(1,0,0);
                     }
                 }
+
+                if (hit.collider != null && Input.GetTouch(i).phase == TouchPhase.Ended)
+                {
+                    // Construct a ray from the current touch coordinates
+
+                    // RaycastHit2D can be either true or null, but has an implicit conversion to bool, so we can use it like this
+                    if(hit.collider.transform.tag == "Chair")
+                    {
+                        hit.collider.transform.GetComponent<Image>().color  = orgColor;
+                    }
+                }
+
+
+               
             }
 
 
