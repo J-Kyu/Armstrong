@@ -15,23 +15,34 @@ public class TouchObject : MonoBehaviour
 
     private bool isSelected = false;    
 
-    void OnMouseDown(){
+    // void OnMouseDown(){
 
-        MousePosition = Input.mousePosition;
-        MousePosition = Camera.main.ScreenToWorldPoint(MousePosition);
+    //     MousePosition = Input.mousePosition;
+    //     MousePosition = Camera.main.ScreenToWorldPoint(MousePosition);
 
         
-        targetTrans = this.gameObject.transform;
+    //     targetTrans = this.gameObject.transform;
 
-        origMousePos = new Vector3(MousePosition.x,MousePosition.y,MousePosition.z);
-        origTargetPos = new Vector3(targetTrans.position.x,targetTrans.position.y,targetTrans.position.z);       
+    //     origMousePos = new Vector3(MousePosition.x,MousePosition.y,MousePosition.z);
+    //     origTargetPos = new Vector3(targetTrans.position.x,targetTrans.position.y,targetTrans.position.z);       
        
-        isSelected = true;
-    }
+    //     isSelected = true;
+    // }
 
     void OnMouseDrag(){
 
         if(!isSelected){
+            MousePosition = Input.mousePosition;
+            MousePosition = Camera.main.ScreenToWorldPoint(MousePosition);
+
+            
+            targetTrans = this.gameObject.transform;
+
+            origMousePos = new Vector3(MousePosition.x,MousePosition.y,MousePosition.z);
+            origTargetPos = new Vector3(targetTrans.position.x,targetTrans.position.y,targetTrans.position.z);       
+        
+            isSelected = true;
+            
             return ;
         }
 
@@ -50,7 +61,7 @@ public class TouchObject : MonoBehaviour
         }   
         else if( this.gameObject.transform.localPosition.y > boundaryTrans.rect.height/2){
             this.gameObject.transform.localPosition = new Vector3(origTargetPos.x, boundaryTrans.rect.height/2,origTargetPos.z);   
-        }      
+        }    
                  
     }
      void OnMouseUp(){
