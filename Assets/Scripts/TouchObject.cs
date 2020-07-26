@@ -5,93 +5,69 @@ using UnityEngine.UI;
 
 public class TouchObject : MonoBehaviour
 {
-    private Vector3 MousePosition;
-
-    private Transform targetTrans;
-
-    public Vector3 origMousePos{get;set;}
-    public Vector3 origTargetPos{get;set;}
-
-    public RectTransform boundaryTrans = null;
-
-    private Color orgColor;
-
-    private bool isSelected = false;    
 
 
-    void Start(){
+    float MaxDistance = 150f;
+    Vector3 MousePosition;
+    Camera camera;
+    private HashSet<Transform> target;
 
-        orgColor = this.gameObject.GetComponent<Image>().color;
+    private Vector3 origMousePos;
+    private Vector3 origTargetPos;
+
+    private Color orgColor = new Color (0,1,0);
+
+
+    private Vector3 position;
+    private float width;
+    private float height;
+
+
+
+    void Awake()
+    {
+        width = (float)Screen.width / 2.0f;
+        height = (float)Screen.height / 2.0f;
+
+        // Position used for the cube.
+        position = new Vector3(0.0f, 0.0f, 0.0f);
+    }
+     void Start()
+    {
+        camera = GetComponent<Camera>();
     }
 
-    void OnMouseDown(){
+    // Update is called once per frame
+    void Update()
+    {
 
 
-        // this.gameObject.GetComponent<Image>().color = new Color(1,0,0);
-        // MousePosition = Input.mousePosition;
-        // MousePosition = Camera.main.ScreenToWorldPoint(MousePosition);
 
-        
-        // targetTrans = this.gameObject.transform;
+        if (Input.touchCount > 0)
+        {
+            for(int i = 0; i < Input.touchCount; i++){
+   
 
-        // origMousePos = new Vector3(MousePosition.x,MousePosition.y,MousePosition.z);
-        // origTargetPos = new Vector3(targetTrans.position.x,targetTrans.position.y,targetTrans.position.z);       
-       
-        // isSelected = true;
-    }
+                // The pos of the touch on the screen
+                Vector2 vTouchPos = Input.GetTouch(i).position;
+                    
+                // The ray to the touched object in the world
+                Ray ray = Camera.main.ScreenPointToRay(vTouchPos);
+                    
+                // Your raycast handling
+                RaycastHit vHit;
+                Debug.DrawRay(ray.origin,ray.direction*MaxDistance, Color.red, 0.3f);
 
-    void OnMouseDrag(){
+                if(Physics.Raycast(ray.origin,ray.direction, out vHit))
+                {
+                    if(vHit.transform.tag == "Chair") 
+                    {
+                        vHit.transform.position = new Vector3(vTouchPos.x,vTouchPos.y,0);
+                    }
+                }
+            }
 
-        if(!isSelected){
-            this.gameObject.GetComponent<Image>().color = new Color(1,0,0);
-            isSelected = true;
+
         }
-
-        // if(!isSelected){
-            
-        //     Debug.Log("New Touch: "+this.gameObject.transform.parent.name);
-
-        //     MousePosition = Input.mousePosition;
-        //     MousePosition = Camera.main.ScreenToWorldPoint(MousePosition);
-
-            
-        //     targetTrans = this.gameObject.transform;
-
-        //     origMousePos = new Vector3(MousePosition.x,MousePosition.y,MousePosition.z);
-        //     origTargetPos = new Vector3(targetTrans.position.x,targetTrans.position.y,targetTrans.position.z);       
-        
-        //     isSelected = true;
-            
-        //     return ;
-        // }
-
-        // MousePosition = Input.mousePosition;
-        // MousePosition = Camera.main.ScreenToWorldPoint(MousePosition);
-
-        // Vector3 movePos =  MousePosition - origMousePos;
-
- 
-        // //선 위치 후 판단
-        // // this.gameObject.transform.position = new Vector3(origTargetPos.x, origTargetPos.y+movePos.y,origTargetPos.z);   
-        // this.gameObject.transform.Translate( new Vector3(0, movePos.y *0.02f,0));   
-
-        // if( this.gameObject.transform.localPosition.y < -boundaryTrans.rect.height/2 ){
-        //     this.gameObject.transform.localPosition = new Vector3(origTargetPos.x, -boundaryTrans.rect.height/2,origTargetPos.z);   
-        // }   
-        // else if( this.gameObject.transform.localPosition.y > boundaryTrans.rect.height/2){
-        //     this.gameObject.transform.localPosition = new Vector3(origTargetPos.x, boundaryTrans.rect.height/2,origTargetPos.z);   
-        // }    
-                 
-    }
-     void OnMouseUp(){
-
-
-        this.gameObject.GetComponent<Image>().color = orgColor;
-    //     if(targetTrans !=  null){
-    //             targetTrans.position = new Vector3(origTargetPos.x,origTargetPos.y,origTargetPos.z);
-    //         }
-            
-    //         targetTrans = null;    
-        isSelected = false;
-    }
+    }    
 }
