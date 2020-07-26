@@ -27,7 +27,7 @@ public class TouchObject : MonoBehaviour
     void OnMouseDown(){
 
 
-        this.gameObject.GetComponent<Image>().color = new Color(1,0,0);
+        // this.gameObject.GetComponent<Image>().color = new Color(1,0,0);
         // MousePosition = Input.mousePosition;
         // MousePosition = Camera.main.ScreenToWorldPoint(MousePosition);
 
@@ -41,6 +41,11 @@ public class TouchObject : MonoBehaviour
     }
 
     void OnMouseDrag(){
+
+        if(!isSelected){
+            this.gameObject.GetComponent<Image>().color = new Color(1,0,0);
+            isSelected = true;
+        }
 
         // if(!isSelected){
             
@@ -87,6 +92,6 @@ public class TouchObject : MonoBehaviour
     //         }
             
     //         targetTrans = null;    
-        // isSelected = false;
+        isSelected = false;
     }
 }
