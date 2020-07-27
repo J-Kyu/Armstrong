@@ -2,8 +2,9 @@ using UnityEngine;
 using UnityEditor; 
 using System; 
 using System.IO; 
-using System.Collections; 
-using System.Collections.Generic; 
+using System.Collections.Generic;
+using UnityEditor.Build.Reporting;
+
 class ProjectBuilder 
 { 
 	static string[] SCENES = FindEnabledEditorScenes(); 
@@ -27,6 +28,7 @@ class ProjectBuilder
 		string buildDirectory = Path.GetFullPath(".") + sep + TARGET_DIR; 
 		string BUILD_TARGET_PATH = TARGET_DIR + "/ios"; 
 		Directory.CreateDirectory(BUILD_TARGET_PATH); 
+		
 
 		GenericBuild(SCENES, BUILD_TARGET_PATH, BuildTarget.iOS, opt); 
 	} 
@@ -36,8 +38,9 @@ class ProjectBuilder
 		List<string> EditorScenes = new List<string>(); 
 		foreach(EditorBuildSettingsScene scene in EditorBuildSettings.scenes) 
 		{ 
-			if (!scene.enabled) 
+			if (!scene.enabled){
 				continue; 
+			} 
 			
 			EditorScenes.Add(scene.path); 
 		} 
@@ -45,11 +48,11 @@ class ProjectBuilder
 	} 
 	static void GenericBuild(string[] scenes, string target_path, BuildTarget build_target, BuildOptions build_options) 
 	{
-		EditorUserBuildSettings.SwitchActiveBuildTarget(build_target); 
-		string res = (BuildPipeline.BuildPlayer(scenes, target_path, build_target, build_options)).ToString(); 
-		if (res.Length > 0) 
+		EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.iOS, build_target);
+		BuildReport res = BuildPipeline.BuildPlayer(scenes, target_path, build_target, build_options); 
+		if (res.summary.result != BuildResult.Succeeded) 
 		{ 
-			throw new Exception("BuildPlayer failure: " + res); 
+			throw new Exception("BuildPlayer failure: " + res.summary.result ); 
 		} 
 	} 
 }
