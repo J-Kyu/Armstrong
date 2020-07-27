@@ -18,7 +18,8 @@ class ProjectBuilder
 							BuildOptions.Development |
 							BuildOptions.ConnectWithProfiler | 
 							BuildOptions.AllowDebugging | 
-							BuildOptions.Development; 
+							BuildOptions.Development |
+							BuildOptions.AcceptExternalModificationsToPlayer;
 		
 		PlayerSettings.iOS.sdkVersion = iOSSdkVersion.DeviceSDK; 
 		PlayerSettings.iOS.targetOSVersion = iOSTargetOSVersion.iOS_4_3; 
@@ -26,6 +27,7 @@ class ProjectBuilder
 
 		char sep = Path.DirectorySeparatorChar; 
 		string buildDirectory = Path.GetFullPath(".") + sep + TARGET_DIR; 
+		
 		string BUILD_TARGET_PATH = TARGET_DIR + "/ios"; 
 		Directory.CreateDirectory(BUILD_TARGET_PATH); 
 		
