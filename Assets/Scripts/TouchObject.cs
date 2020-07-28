@@ -14,8 +14,9 @@ public class TouchObject : MonoBehaviour
 
 
     private Vector3 position;
-    private float width;
-    private float height;
+
+    private Vector3 origMousePos;
+    
 
 
 
@@ -24,47 +25,48 @@ public class TouchObject : MonoBehaviour
     {
 
 
+        //touch
+        for(int i = 0; i < Input.touchCount; i++){
 
-        if (Input.touchCount > 0)
-        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position), Vector2.zero);
 
-            
-            for(int i = 0; i < Input.touchCount; i++){
-   
 
-                Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
-
-                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position), Vector2.zero);
-  
-                // Debug.DrawRay(ray.origin,ray.direction*MaxDistance, Color.red, 0.3f);
-                if (hit.collider != null && Input.GetTouch(i).phase == TouchPhase.Began)
+            //first touch
+            if (hit.collider != null && Input.GetTouch(i).phase == TouchPhase.Began)
+            {
+                if(hit.collider.transform.tag == "Chair")
                 {
-                    // Construct a ray from the current touch coordinates
-
-                    // RaycastHit2D can be either true or null, but has an implicit conversion to bool, so we can use it like this
-                    if(hit.collider.transform.tag == "Chair")
-                    {
-                        orgColor = hit.collider.transform.GetComponent<Image>().color;
-                        hit.collider.transform.GetComponent<Image>().color  = new Color(1,0,0);
-                    }
+                    orgColor = hit.collider.transform.GetComponent<Image>().color;
+                    hit.collider.transform.GetComponent<Image>().color  = new Color(1,0,0);
                 }
+            }
 
-                if (hit.collider != null && Input.GetTouch(i).phase == TouchPhase.Ended)
+            //end touch
+            if (hit.collider != null && Input.GetTouch(i).phase == TouchPhase.Ended)
+            {
+                if(hit.collider.transform.tag == "Chair")
                 {
-                    // Construct a ray from the current touch coordinates
-
-                    // RaycastHit2D can be either true or null, but has an implicit conversion to bool, so we can use it like this
-                    if(hit.collider.transform.tag == "Chair")
-                    {
-                        hit.collider.transform.GetComponent<Image>().color  = orgColor;
-                    }
+                    hit.collider.transform.GetComponent<Image>().color  = orgColor;
                 }
-
-
-               
             }
 
 
+            
         }
+
+
     }    
+
+
+
+    /*
+    phone에서와 pc에서 test를 위해서 function만 고유하고 input 값을 유동적으로 받는다.
+    */
+    private void MoveTarget(Vector2 touch, GameObject target){
+        /*
+            move target on touch
+        */
+        target.transform.Translate( new Vector3(0, touch.y *0.02f,0));
+    }
 }
