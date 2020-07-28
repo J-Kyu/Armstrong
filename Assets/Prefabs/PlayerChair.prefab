@@ -82,7 +82,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 899597176}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -358,6 +358,7 @@ GameObject:
   - component: {fileID: 1612142450537350342}
   - component: {fileID: 1612142450537350336}
   - component: {fileID: 676388686}
+  - component: {fileID: 7599698153539707345}
   m_Layer: 5
   m_Name: Player
   m_TagString: Chair
@@ -458,3 +459,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &7599698153539707345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612142450537350363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 356b675128b644530bf3e2856fe8c244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boundaryTrans: {fileID: 1612142448735031473}
