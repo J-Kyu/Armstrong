@@ -7,9 +7,11 @@ using UnityEditor.Build.Reporting;
 
 class ProjectBuilder 
 { 
+
 	static string[] SCENES = FindEnabledEditorScenes(); 
 	static string TARGET_DIR = "build"; 
 
+	static string APP_NAME = "Armstrong";
 
 	[MenuItem ("Custom/CI/Build iOS Debug")] 
 	static void PerformiOSDebugBuild () 
@@ -57,5 +59,26 @@ class ProjectBuilder
 			throw new Exception("BuildPlayer failure: " + res.summary.result ); 
 		} 
 	} 
+
+
+
+	[MenuItem("Custom/CI/Buidl Android")]
+	public static void PerformAndroidBuild()
+	{
+		BuildOptions opt = BuildOptions.None;
+
+
+		char sep = Path.DirectorySeparatorChar;
+		string BUILD_TARGET_PATH = Path.GetFullPath(".")+ sep + TARGET_DIR + string.Format("/AndroidBuild.apk");
+
+		GenericBuild(SCENES,BUILD_TARGET_PATH,BuildTarget.Android,opt);
+
+	}
+
+
+
+
+	
+    
 }
 
