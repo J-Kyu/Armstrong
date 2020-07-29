@@ -70,7 +70,7 @@ class ProjectBuilder
 
 		char sep = Path.DirectorySeparatorChar;
 
-		string BUILD_TARGET_PATH =  Path.GetFullPath(".") + sep + TARGET_DIR+string.Format("/AndroidBuild.apk"); 
+		string BUILD_TARGET_PATH =  Path.GetFullPath(".") + sep + TARGET_DIR+string.Format("/Armstrong.apk"); 
 
 
 		GenericBuild(SCENES,BUILD_TARGET_PATH,BuildTarget.Android,opt,BuildTargetGroup.Android);
