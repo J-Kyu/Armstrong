@@ -69,7 +69,10 @@ class ProjectBuilder
 
 
 		char sep = Path.DirectorySeparatorChar;
-		string BUILD_TARGET_PATH = Path.GetFullPath(".")+ sep + TARGET_DIR + string.Format("/AndroidBuild");
+		string buildDirectory = Path.GetFullPath(".") + sep + TARGET_DIR; 
+		
+		string BUILD_TARGET_PATH = buildDirectory+"/android";
+		Directory.CreateDirectory(BUILD_TARGET_PATH); 
 
 		GenericBuild(SCENES,BUILD_TARGET_PATH,BuildTarget.Android,opt,BuildTargetGroup.Android);
 
