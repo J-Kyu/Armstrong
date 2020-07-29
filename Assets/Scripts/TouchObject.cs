@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class TouchObject : MonoBehaviour
 {
-
-
-    float MaxDistance = 150f;
     Vector3 MousePosition;
 
     private Color orgColor = new Color (0,1,0);
