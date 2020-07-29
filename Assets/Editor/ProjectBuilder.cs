@@ -34,7 +34,7 @@ class ProjectBuilder
 		Directory.CreateDirectory(BUILD_TARGET_PATH); 
 		
 
-		GenericBuild(SCENES, BUILD_TARGET_PATH, BuildTarget.iOS, opt); 
+		GenericBuild(SCENES, BUILD_TARGET_PATH, BuildTarget.iOS, opt,BuildTargetGroup.iOS); 
 	} 
 		
 	private static string[] FindEnabledEditorScenes() 
@@ -50,9 +50,9 @@ class ProjectBuilder
 		} 
 		return EditorScenes.ToArray(); 
 	} 
-	static void GenericBuild(string[] scenes, string target_path, BuildTarget build_target, BuildOptions build_options) 
+	static void GenericBuild(string[] scenes, string target_path, BuildTarget build_target, BuildOptions build_options,BuildTargetGroup buildTargetGroup) 
 	{
-		EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.iOS, build_target);
+		EditorUserBuildSettings.SwitchActiveBuildTarget(buildTargetGroup, build_target);
 		BuildReport res = BuildPipeline.BuildPlayer(scenes, target_path, build_target, build_options); 
 		if (res.summary.result != BuildResult.Succeeded) 
 		{ 
@@ -69,9 +69,9 @@ class ProjectBuilder
 
 
 		char sep = Path.DirectorySeparatorChar;
-		string BUILD_TARGET_PATH = Path.GetFullPath(".")+ sep + TARGET_DIR + string.Format("/AndroidBuild.apk");
+		string BUILD_TARGET_PATH = Path.GetFullPath(".")+ sep + TARGET_DIR + string.Format("/AndroidBuild");
 
-		GenericBuild(SCENES,BUILD_TARGET_PATH,BuildTarget.Android,opt);
+		GenericBuild(SCENES,BUILD_TARGET_PATH,BuildTarget.Android,opt,BuildTargetGroup.Android);
 
 	}
 
