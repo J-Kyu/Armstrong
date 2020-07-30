@@ -74,8 +74,9 @@ public class ChairMovement : MonoBehaviour
 
     public void MoveChair(Vector2 touchPosition, Vector2 origTouchPos){
 
-        if (SystemInfo.deviceType == DeviceType.Desktop){
+        if (SystemInfo.deviceType != DeviceType.Desktop){
             touchPosition = Camera.main.ScreenToWorldPoint(touchPosition);    
+            origTouchPos = Camera.main.ScreenToWorldPoint(origTouchPos);    
         }
 
         Vector3 movePos =  touchPosition - origTouchPos;
