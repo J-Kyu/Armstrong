@@ -110,7 +110,7 @@ public class ChairMovement : MonoBehaviour
 
     public void ChairSelected()
     {
-        rangeTouchCollider.radius = 65.0f;
+        rangeTouchCollider.radius = 70.0f;
         rangeTouchObject.SetActive(true);
 
 
