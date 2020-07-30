@@ -78,7 +78,7 @@ public class ChairMovement : MonoBehaviour
 
         Vector3 movePos =  touchPosition - origTouchPos;
 
-        LogContent.instance.SaveLog(this.gameObject.name, "Touch Drag");
+        LogContent.instance.SaveLog(this.gameObject.name, "Touch Pos: "+touchPosition);
  
         //선 위치 후 판단
         // this.gameObject.transform.position = new Vector3(origTargetPos.x, origTargetPos.y+movePos.y,origTargetPos.z);   

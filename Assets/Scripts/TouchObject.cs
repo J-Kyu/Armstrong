@@ -29,7 +29,7 @@ public class TouchObject : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position), Vector2.zero);
 
-            
+                        
 
             //first touch
             if (hit.collider != null && Input.GetTouch(i).phase == TouchPhase.Began)
