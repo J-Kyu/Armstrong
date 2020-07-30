@@ -46,9 +46,8 @@ public class TouchObject : MonoBehaviour
             {
                 if(hit.collider.transform.tag == "Chair")
                 {
-                    //translate
-                    Vector2 movingPos = Input.GetTouch(i).position -  touchDic[Input.GetTouch(i).fingerId];
-                    hit.transform.Translate( new Vector3(0, movingPos.y *0.02f,0));
+                    //translate            
+                    hit.transform.GetComponent<ChairMovement>().MoveChair(Input.GetTouch(i).position,touchDic[Input.GetTouch(i).fingerId]);
                     LogContent.instance.SaveLog(this.gameObject.name, "Touch Drag");
                 }
             }
