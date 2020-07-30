@@ -30,6 +30,7 @@ public class ChairMovement : MonoBehaviour
     }
 
     void OnMouseDown(){
+        
         if (SystemInfo.deviceType != DeviceType.Desktop){
             return;
         }
@@ -57,7 +58,7 @@ public class ChairMovement : MonoBehaviour
 
         Vector3 currentMousePos =   Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        MoveChair(currentMousePos, origMousePos);
+        MoveChair(currentMousePos);
  
         LogContent.instance.SaveLog(this.gameObject.name, "Mouse Drag"); 
                  
@@ -80,12 +81,13 @@ public class ChairMovement : MonoBehaviour
     }
 
 
-    public void MoveChair(Vector2 touchPosition, Vector2 origTouchPos){
+    public void MoveChair(Vector2 touchPosition){
 
         if (SystemInfo.deviceType != DeviceType.Desktop){
-            touchPosition = Camera.main.ScreenToWorldPoint(touchPosition);    
-            origTouchPos = Camera.main.ScreenToWorldPoint(origTouchPos);    
+            touchPosition = Camera.main.ScreenToWorldPoint(touchPosition);        
         }
+
+        Vector2 origTouchPos = this.gameObject.transform.position;
 
         Vector3 movePos =  touchPosition - origTouchPos;
 
