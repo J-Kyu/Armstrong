@@ -17,7 +17,11 @@ public class ChairMovement : MonoBehaviour
 
     private Color orgColor;
 
-    private bool isSelected = false;    
+    private bool isSelected = false;   
+
+    [SerializeField] private CircleCollider2D rangeTouchCollider = null; 
+    [SerializeField] private GameObject rangeTouchObject = null;
+
 
 
     void Start(){
@@ -40,7 +44,9 @@ public class ChairMovement : MonoBehaviour
         origTargetPos = new Vector3(targetTrans.position.x,targetTrans.position.y,targetTrans.position.z);       
        
         isSelected = true;
+        ChairSelected();
         LogContent.instance.SaveLog(this.gameObject.name, "Mouse Down");
+
     }
 
     void OnMouseDrag(){
@@ -69,7 +75,7 @@ public class ChairMovement : MonoBehaviour
         targetTrans = null;    
         isSelected = false;
 
-
+        ChairReleased();
         LogContent.instance.SaveLog(this.gameObject.name, "Mouse Up");
     }
 
@@ -98,5 +104,19 @@ public class ChairMovement : MonoBehaviour
 
     }
 
+    public void ChairSelected()
+    {
+        rangeTouchCollider.radius = 65.0f;
+        rangeTouchObject.SetActive(true);
+
+
+    }
+
+    public void ChairReleased()
+    {
+        rangeTouchCollider.radius = 35f;
+        rangeTouchObject.SetActive(false);
+
+    }
     
 }
