@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class ChairMovement : MonoBehaviour
 {
 
+    private float chairSpeed = 0.07f;
+
     private Vector3 MousePosition;
 
     private Transform targetTrans;
@@ -95,7 +97,7 @@ public class ChairMovement : MonoBehaviour
  
         //선 위치 후 판단
         // this.gameObject.transform.position = new Vector3(origTargetPos.x, origTargetPos.y+movePos.y,origTargetPos.z);   
-        this.gameObject.transform.Translate( new Vector3(0, movePos.y *0.02f,0));   
+        this.gameObject.transform.Translate( new Vector3(0, movePos.y * chairSpeed,0));   
 
         if( this.gameObject.transform.localPosition.y < -boundaryTrans.rect.height/2 ){
             this.gameObject.transform.localPosition = new Vector3(origTargetPos.x, -boundaryTrans.rect.height/2,origTargetPos.z);   

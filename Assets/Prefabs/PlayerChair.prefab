@@ -359,6 +359,7 @@ GameObject:
   - component: {fileID: 1612142450537350336}
   - component: {fileID: 676388686}
   - component: {fileID: 7599698153539707345}
+  - component: {fileID: 4033202550894876609}
   m_Layer: 5
   m_Name: Player
   m_TagString: Chair
@@ -433,7 +434,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -475,6 +476,22 @@ MonoBehaviour:
   boundaryTrans: {fileID: 1612142448735031473}
   rangeTouchCollider: {fileID: 1612142450537350336}
   rangeTouchObject: {fileID: 6647193184521627495}
+--- !u!58 &4033202550894876609
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612142450537350363}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 35
 --- !u!1 &6647193184521627495
 GameObject:
   m_ObjectHideFlags: 0
