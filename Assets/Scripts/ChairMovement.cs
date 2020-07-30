@@ -49,7 +49,9 @@ public class ChairMovement : MonoBehaviour
             return;
         }
 
-        MoveChair(Input.mousePosition, origMousePos);
+        Vector3 currentMousePos =   Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        MoveChair(currentMousePos, origMousePos);
  
         LogContent.instance.SaveLog(this.gameObject.name, "Mouse Drag"); 
                  
