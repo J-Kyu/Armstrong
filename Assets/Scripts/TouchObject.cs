@@ -48,7 +48,6 @@ public class TouchObject : MonoBehaviour
                 {
                     //translate            
                     hit.transform.GetComponent<ChairMovement>().MoveChair(Input.GetTouch(i).position,touchDic[Input.GetTouch(i).fingerId]);
-                    LogContent.instance.SaveLog(this.gameObject.name, "Touch Drag");
                 }
             }
 
