@@ -38,6 +38,7 @@ public class TouchObject : MonoBehaviour
                 {
                     //register fingerID and start Pos as pair
                     touchDic.Add(Input.GetTouch(i).fingerId,Input.GetTouch(i).position);
+                    LogContent.instance.SaveLog(this.gameObject.name, "Touch Start");
                 }
             }
 
@@ -48,6 +49,7 @@ public class TouchObject : MonoBehaviour
                     //translate
                     Vector2 movingPos = Input.GetTouch(i).position -  touchDic[Input.GetTouch(i).fingerId];
                     hit.transform.Translate( new Vector3(0, movingPos.y *0.02f,0));
+                    LogContent.instance.SaveLog(this.gameObject.name, "Touch Drag");
                 }
             }
 
@@ -59,6 +61,7 @@ public class TouchObject : MonoBehaviour
                 {
                     //remove fingerID and start Pos as pair
                     touchDic.Remove(Input.GetTouch(i).fingerId);
+                    LogContent.instance.SaveLog(this.gameObject.name, "Touch Done");
                 }
             }
 

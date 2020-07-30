@@ -40,6 +40,7 @@ public class ChairMovement : MonoBehaviour
         origTargetPos = new Vector3(targetTrans.position.x,targetTrans.position.y,targetTrans.position.z);       
        
         isSelected = true;
+        LogContent.instance.SaveLog(this.gameObject.name, "Mouse Down");
     }
 
     void OnMouseDrag(){
@@ -81,7 +82,9 @@ public class ChairMovement : MonoBehaviour
         }   
         else if( this.gameObject.transform.localPosition.y > boundaryTrans.rect.height/2){
             this.gameObject.transform.localPosition = new Vector3(origTargetPos.x, boundaryTrans.rect.height/2,origTargetPos.z);   
-        }    
+        }   
+
+        LogContent.instance.SaveLog(this.gameObject.name, "Mouse Drag"); 
                  
     }
      void OnMouseUp(){
@@ -96,6 +99,9 @@ public class ChairMovement : MonoBehaviour
             
             targetTrans = null;    
         isSelected = false;
+
+
+        LogContent.instance.SaveLog(this.gameObject.name, "Mouse Up");
     }
 
     
