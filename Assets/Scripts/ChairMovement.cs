@@ -26,7 +26,9 @@ public class ChairMovement : MonoBehaviour
     }
 
     void OnMouseDown(){
-
+        if (SystemInfo.deviceType != DeviceType.Desktop){
+            return;
+        }
 
         MousePosition = Input.mousePosition;
         MousePosition = Camera.main.ScreenToWorldPoint(MousePosition);
@@ -41,6 +43,10 @@ public class ChairMovement : MonoBehaviour
     }
 
     void OnMouseDrag(){
+
+        if (SystemInfo.deviceType != DeviceType.Desktop){
+            return;
+        }
 
         if(!isSelected){
             
@@ -79,6 +85,11 @@ public class ChairMovement : MonoBehaviour
                  
     }
      void OnMouseUp(){
+
+        if (SystemInfo.deviceType != DeviceType.Desktop){
+            return;
+        }
+
         if(targetTrans !=  null){
                 targetTrans.position = new Vector3(origTargetPos.x,origTargetPos.y,origTargetPos.z);
             }
