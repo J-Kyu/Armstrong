@@ -60,11 +60,11 @@ public class ChairMovement : MonoBehaviour
             return;
         }
 
-        if(targetTrans !=  null){
-                targetTrans.position = new Vector3(origTargetPos.x,origTargetPos.y,origTargetPos.z);
-            }
+        // if(targetTrans !=  null){
+        //         targetTrans.position = new Vector3(origTargetPos.x,origTargetPos.y,origTargetPos.z);
+        //     }
             
-            targetTrans = null;    
+        targetTrans = null;    
         isSelected = false;
 
 
@@ -74,11 +74,13 @@ public class ChairMovement : MonoBehaviour
 
     public void MoveChair(Vector2 touchPosition, Vector2 origTouchPos){
 
-        touchPosition = Camera.main.ScreenToWorldPoint(touchPosition);
+        if (SystemInfo.deviceType == DeviceType.Desktop){
+            touchPosition = Camera.main.ScreenToWorldPoint(touchPosition);    
+        }
 
         Vector3 movePos =  touchPosition - origTouchPos;
 
-        LogContent.instance.SaveLog(this.gameObject.name, "movePos: "+movePos);
+        LogContent.instance.SaveLog(this.gameObject.name, "movePos: "+touchPosition);
  
         //선 위치 후 판단
         // this.gameObject.transform.position = new Vector3(origTargetPos.x, origTargetPos.y+movePos.y,origTargetPos.z);   
