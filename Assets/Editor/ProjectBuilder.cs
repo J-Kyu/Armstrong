@@ -71,7 +71,7 @@ class ProjectBuilder
 		char sep = Path.DirectorySeparatorChar;
 
 		string BUILD_TARGET_PATH =  Path.GetFullPath(".") + sep + TARGET_DIR+string.Format("/Armstrong.apk"); 
-
+		PlayerSettings.statusBarHidden = true; 
 
 		GenericBuild(SCENES,BUILD_TARGET_PATH,BuildTarget.Android,opt,BuildTargetGroup.Android);
 

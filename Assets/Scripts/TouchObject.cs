@@ -54,5 +54,31 @@ public class TouchObject : MonoBehaviour
                 }
             }
         }
+    
+    
+        //Check Get
+        bool keyExist = false;
+        foreach (int key in chairDic.Keys){
+
+            for(int i = 0; i < Input.touchCount; i++){
+
+                if(Input.GetTouch(i).fingerId == key){
+                    keyExist = true;
+                    break;
+                }
+            }
+
+            if(!keyExist){
+                //remove
+                chairDic[key].GetComponent<ChairMovement>().ChairReleased();
+                chairDic.Remove(key);
+            }
+            keyExist = false;
+
+        }
+
+
+
+
     }    
 }
