@@ -53,19 +53,39 @@ public class TouchObject : MonoBehaviour
 
 
             //end touch
-            if (hit.collider != null && Input.GetTouch(i).phase == TouchPhase.Ended)
-            {
-                if(hit.collider.transform.tag == "Chair")
-                {
-                    //remove fingerID and start Pos as pair
-                    touchDic.Remove(Input.GetTouch(i).fingerId);
-                    LogContent.instance.SaveLog(this.gameObject.name, "Touch Done");
+            // if (hit.collider != null && Input.GetTouch(i).phase == TouchPhase.Ended)
+            // {
+            //     if(hit.collider.transform.tag == "Chair")
+            //     {
+            //         //remove fingerID and start Pos as pair
+            //         touchDic.Remove(Input.GetTouch(i).fingerId);
+            //         LogContent.instance.SaveLog(this.gameObject.name, "Touch Done");
+            //     }
+            // }
+        }
+    
+    
+        //Check Get
+        bool keyExist = false;
+        foreach (int key in touchDic.Keys){
+
+            for(int i = 0; i < Input.touchCount; i++){
+
+                if(Input.GetTouch(i).fingerId == key){
+                    keyExist = true;
+                    break;
                 }
             }
 
+            if(!keyExist){
+                //remove
+                touchDic.Remove(key);
+            }
+            keyExist = false;
 
-            
         }
+
+
 
 
     }    
