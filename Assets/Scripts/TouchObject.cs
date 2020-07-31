@@ -30,7 +30,6 @@ public class TouchObject : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position), Vector2.zero);
 
-                        
 
             //first touch
             if (hit.collider != null && Input.GetTouch(i).phase == TouchPhase.Began)
@@ -42,7 +41,6 @@ public class TouchObject : MonoBehaviour
                     hit.transform.gameObject.GetComponent<ChairMovement>().ChairSelected();
 
                     LogContent.instance.SaveLog(this.gameObject.name, "Touch Start");
-                    continue;
                 }
             }
 
@@ -52,7 +50,6 @@ public class TouchObject : MonoBehaviour
                 {
                     //translate            
                     hit.transform.GetComponent<ChairMovement>().MoveChair(Input.GetTouch(i).position);
-                    continue;
                 }
             }
         }
