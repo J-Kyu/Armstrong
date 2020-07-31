@@ -7,25 +7,25 @@ public class RangeDetector : MonoBehaviour
 {
 
     [SerializeField] private Text statusText = null;
-    // private void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     // if(other.tag == "Finish Zone"){
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // if(other.tag == "Finish Zone"){
 
-    //     //     statusText.text = "Finish";
-    //     // }
+        //     statusText.text = "Finish";
+        // }
 
-    //     // else if(other.tag == "Catch Zone"){
-    //     //     statusText.text = "Catch";
-    //     // }
+        // else if(other.tag == "Catch Zone"){
+        //     statusText.text = "Catch";
+        // }
 
-    //     statusText.text = other.name;
-    // }
+        statusText.text = other.name;
+    }
 
-    // void OnTriggerExit2D(Collider2D other){
-    //     if(other.tag == "Finish Zone" || other.tag == "Catch Zone"){
-    //         statusText.text = "Rowing";
-    //     }
-    // }
+    void OnTriggerExit2D(Collider2D other){
+        if(other.tag == "Finish Zone" || other.tag == "Catch Zone"){
+            statusText.text = "Rowing";
+        }
+    }
 
     
 }
