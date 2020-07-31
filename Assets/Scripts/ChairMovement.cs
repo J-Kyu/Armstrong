@@ -130,9 +130,4 @@ public class ChairMovement : MonoBehaviour
         oarTrans.rotation =  Quaternion.Euler (0,0,ratio*2 * (-45));
 
     }
-
-
-
-
-    
 }
