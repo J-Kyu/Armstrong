@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ChairMovement : MonoBehaviour
 {
 
-    private float chairSpeed = 0.07f;
+    private float chairSpeed = 0.2f;
 
     private Vector3 MousePosition;
 
