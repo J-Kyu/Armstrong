@@ -17,19 +17,19 @@ public class ChairMovement : MonoBehaviour
 
     public RectTransform boundaryTrans = null;
 
-    private Color orgColor;
-
     private bool isSelected = false;   
+
+
+    [SerializeField] private Transform oarTrans = null;
 
     [SerializeField] private CircleCollider2D rangeTouchCollider = null; 
     [SerializeField] private GameObject rangeTouchObject = null;
 
 
-
-    void Start(){
-
-        orgColor = this.gameObject.GetComponent<Image>().color;
+    void Update(){
+        Rowing();
     }
+
 
     void OnMouseDown(){
         
@@ -122,5 +122,17 @@ public class ChairMovement : MonoBehaviour
         rangeTouchObject.SetActive(false);
 
     }
+
+
+
+    private void Rowing(){
+        float ratio = this.gameObject.transform.localPosition.y/boundaryTrans.rect.height;
+        oarTrans.rotation =  Quaternion.Euler (0,0,ratio*2 * (-45));
+
+    }
+
+
+
+
     
 }
