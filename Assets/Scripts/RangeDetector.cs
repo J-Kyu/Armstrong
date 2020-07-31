@@ -19,11 +19,11 @@ public class RangeDetector : MonoBehaviour
         }
     }
 
-    void OnTriggerExit2D(Collider2D other){
-        if(other.tag == "Finish Zone" || other.tag == "Catch Zone"){
-            statusText.text = "Rowing";
-        }
-    }
+    // void OnTriggerExit2D(Collider2D other){
+    //     if(other.tag == "Finish Zone" || other.tag == "Catch Zone"){
+    //         statusText.text = "Rowing";
+    //     }
+    // }
 
     
 }
