@@ -42,6 +42,7 @@ public class TouchObject : MonoBehaviour
                     hit.transform.gameObject.GetComponent<ChairMovement>().ChairSelected();
 
                     LogContent.instance.SaveLog(this.gameObject.name, "Touch Start");
+                    continue;
                 }
             }
 
@@ -51,6 +52,7 @@ public class TouchObject : MonoBehaviour
                 {
                     //translate            
                     hit.transform.GetComponent<ChairMovement>().MoveChair(Input.GetTouch(i).position);
+                    continue;
                 }
             }
         }
