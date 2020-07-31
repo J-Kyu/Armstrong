@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Chair
+  - Finish Zone
+  - Catch Zone
   layers:
   - Default
   - TransparentFX
