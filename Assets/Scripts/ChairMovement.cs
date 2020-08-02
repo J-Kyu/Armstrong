@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class ChairMovement : MonoBehaviour
 {
 
+    enum OarSide{Bow,Stroke}
+
     private float chairSpeed = 0.2f;
 
     private Vector3 MousePosition;
@@ -19,12 +21,12 @@ public class ChairMovement : MonoBehaviour
 
     private bool isSelected = false;   
 
-
     [SerializeField] private Transform oarTrans = null;
 
     [SerializeField] private CircleCollider2D rangeTouchCollider = null; 
     [SerializeField] private GameObject rangeTouchObject = null;
 
+    [SerializeField] private OarSide oarSide;
 
     void Update(){
         Rowing();
@@ -127,7 +129,13 @@ public class ChairMovement : MonoBehaviour
 
     private void Rowing(){
         float ratio = this.gameObject.transform.localPosition.y/boundaryTrans.rect.height;
-        oarTrans.rotation =  Quaternion.Euler (0,0,ratio*2 * (-45));
+        if(oarSide == OarSide.Bow){
+            oarTrans.rotation =  Quaternion.Euler (0,0,ratio*2 * (45));
+        }
+        else if(oarSide == OarSide.Stroke){
+            oarTrans.rotation =  Quaternion.Euler (0,0,ratio*2 * (-45));
+        }
+        
 
     }
 }

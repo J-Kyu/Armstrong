@@ -307,7 +307,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1612142450203898399}
   m_Layer: 5
-  m_Name: PlayerChair
+  m_Name: Seat_Stoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -322,7 +322,7 @@ RectTransform:
   m_GameObject: {fileID: 1612142450203898398}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 0.99962103}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 1612142448735031473}
   - {fileID: 1782060907}
@@ -468,6 +468,7 @@ MonoBehaviour:
   oarTrans: {fileID: 1782060907}
   rangeTouchCollider: {fileID: 1612142450537350336}
   rangeTouchObject: {fileID: 6647193184521627495}
+  oarSide: 1
 --- !u!58 &4033202550894876609
 CircleCollider2D:
   m_ObjectHideFlags: 0
