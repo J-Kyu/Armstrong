@@ -133,6 +133,7 @@ MonoBehaviour:
   rangeTouchCollider: {fileID: 243048389845516242}
   rangeTouchObject: {fileID: 5278098670702337141}
   oarSide: 0
+  chairStatus: 3
 --- !u!58 &2519993121730358483
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -724,6 +725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statusText: {fileID: 5505274687559833481}
+  chairMovement: {fileID: 8968792256107420355}
 --- !u!1 &7790485036737759764
 GameObject:
   m_ObjectHideFlags: 0

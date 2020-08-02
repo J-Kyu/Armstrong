@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class ChairMovement : MonoBehaviour
 {
 
-    enum OarSide{Bow,Stroke}
+    public enum OarSide{Bow,Stroke}
+
+    public enum ChairStatus{Catch,Rowing, Finish, Recovery}
 
     private float chairSpeed = 0.2f;
 
@@ -27,6 +29,9 @@ public class ChairMovement : MonoBehaviour
     [SerializeField] private GameObject rangeTouchObject = null;
 
     [SerializeField] private OarSide oarSide;
+
+
+    public ChairStatus chairStatus = ChairStatus.Recovery;
 
     void Update(){
         Rowing();
