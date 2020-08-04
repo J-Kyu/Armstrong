@@ -30,7 +30,6 @@ public class ChairMovement : MonoBehaviour
 
     [SerializeField] private OarSide oarSide;
 
-
     public ChairStatus chairStatus = ChairStatus.Recovery;
 
     void Update(){
