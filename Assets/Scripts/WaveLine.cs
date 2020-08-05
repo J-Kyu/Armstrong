@@ -27,8 +27,6 @@ public class WaveLine : MonoBehaviour
                 waveTransformsList[i].localPosition = new Vector3(0,-2560.0f,0);
             }
         }
-
-        // Debug.Log(Mathf.Abs(Mathf.Sin(Time.time)));
     }
 
     public void IncreaseSpeed(){
