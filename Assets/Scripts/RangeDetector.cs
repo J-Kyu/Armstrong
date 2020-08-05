@@ -91,8 +91,6 @@ public class RangeDetector : MonoBehaviour
 
     private void TurnHorizontal(float angle){
 
-        Debug.Log(bladeTrans.localEulerAngles.x + " | " + angle);
-
         if(bladeTrans.localEulerAngles.x > angle){
             bladeTrans.Rotate(new Vector3(-1,0,0) * turnSpeed * Time.deltaTime);
         }
