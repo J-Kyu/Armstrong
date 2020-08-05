@@ -18,13 +18,13 @@ public class WaveLine : MonoBehaviour
         basicSpeed = Mathf.Abs(Mathf.Sin(Time.time))*0.05f;
 
         for(int i = 0; i < waveTransformsList.Count; i++){
-            if(waveTransformsList[i].localPosition.y  > -5120.0f){
+            if(waveTransformsList[i].localPosition.y  < 2560.0f){
                 
-                waveTransformsList[i].Translate( new Vector3(0, -basicSpeed*boatPower,0));   
+                waveTransformsList[i].Translate( new Vector3(0, basicSpeed*boatPower,0));   
 
             }
             else{
-                waveTransformsList[i].localPosition = new Vector3(0,0,0);
+                waveTransformsList[i].localPosition = new Vector3(0,-2560.0f,0);
             }
         }
 
