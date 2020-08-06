@@ -12,7 +12,10 @@ public class RangeDetector : MonoBehaviour
 
     [SerializeField] private Transform bladeTrans = null;
 
-    private const float turnSpeed = 45.0f;
+    [SerializeField] private Text turnPercetageText = null;
+
+    private const float catchTurnSpeed = 90.0f;
+    private const float finishTurnSpeed = 100.0f;
 
     void Update(){
 
@@ -46,6 +49,7 @@ public class RangeDetector : MonoBehaviour
             }
 
         }
+        turnPercetageText.text  = string.Format("Turn: {0:F0}%",((bladeTrans.localEulerAngles.x-1)*100.0f/74.0f));
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -54,7 +58,6 @@ public class RangeDetector : MonoBehaviour
 
             statusText.text = "Finish";
             chairMovement.chairStatus = ChairMovement.ChairStatus.Finish;
-            // bladeTrans.rotation.x
         }
 
         else if(other.tag == "Catch Zone"){
@@ -80,7 +83,7 @@ public class RangeDetector : MonoBehaviour
 
         if(bladeTrans.localEulerAngles.x < angle){
 
-               bladeTrans.Rotate(new Vector3(1,0,0) * turnSpeed * Time.deltaTime);
+               bladeTrans.Rotate(new Vector3(1,0,0) * catchTurnSpeed * Time.deltaTime);
         }
         else{
             bladeTrans.localEulerAngles = new Vector3(angle,0,0);
@@ -92,7 +95,8 @@ public class RangeDetector : MonoBehaviour
     private void TurnHorizontal(float angle){
 
         if(bladeTrans.localEulerAngles.x > angle){
-            bladeTrans.Rotate(new Vector3(-1,0,0) * turnSpeed * Time.deltaTime);
+            bladeTrans.Rotate(new Vector3(-1,0,0) * finishTurnSpeed * Time.deltaTime);
+
         }
         else{
             bladeTrans.localEulerAngles = new Vector3(angle,0,0);
