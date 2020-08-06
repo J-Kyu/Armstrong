@@ -15,7 +15,10 @@ public class RangeDetector : MonoBehaviour
     [SerializeField] private Text turnPercetageText = null;
 
     private const float catchTurnSpeed = 90.0f;
-    private const float finishTurnSpeed = 100.0f;
+    private const float finishTurnSpeed = 150.0f;
+
+    private const float bladeMaxAngle = 75.0f;
+    private const float bladeMinAngle = 0.0f;
 
     void Update(){
 
@@ -23,7 +26,7 @@ public class RangeDetector : MonoBehaviour
 
         switch(chairMovement.chairStatus){
             case ChairMovement.ChairStatus.Catch:{
-                TurnVertical(75);
+                TurnVertical();
                 break;
             }
 
@@ -32,12 +35,12 @@ public class RangeDetector : MonoBehaviour
                 break;
             }
             case ChairMovement.ChairStatus.Finish:{
-                TurnHorizontal(1);
+                TurnHorizontal();
                 break;
 
             }
             case ChairMovement.ChairStatus.Recovery:{
-                TurnHorizontal(1);
+                TurnHorizontal();
 
                 break;
             }
@@ -49,7 +52,13 @@ public class RangeDetector : MonoBehaviour
             }
 
         }
-        turnPercetageText.text  = string.Format("Turn: {0:F0}%",((bladeTrans.localEulerAngles.x-1)*100.0f/74.0f));
+        if(bladeTrans.localEulerAngles.x > bladeMaxAngle){
+            turnPercetageText.text  = string.Format("Turn: {0:F0}%",0);
+        }
+        else{
+            turnPercetageText.text  = string.Format("Turn: {0:F0}%",((bladeTrans.localEulerAngles.x)*100.0f/75.0f));
+        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -79,28 +88,36 @@ public class RangeDetector : MonoBehaviour
     }
 
 
-    private void TurnVertical(float angle){
+    private void TurnVertical(){
 
-        if(bladeTrans.localEulerAngles.x < angle){
+        if(bladeTrans.localEulerAngles.x < bladeMaxAngle || bladeTrans.localEulerAngles.x > 350.0f ){
 
                bladeTrans.Rotate(new Vector3(1,0,0) * catchTurnSpeed * Time.deltaTime);
         }
         else{
-            bladeTrans.localEulerAngles = new Vector3(angle,0,0);
+            bladeTrans.localEulerAngles = new Vector3(bladeMaxAngle,0,0);
         }
 
      
     }
 
-    private void TurnHorizontal(float angle){
+    private void TurnHorizontal(){
 
-        if(bladeTrans.localEulerAngles.x > angle){
-            bladeTrans.Rotate(new Vector3(-1,0,0) * finishTurnSpeed * Time.deltaTime);
 
+        if(bladeTrans.localEulerAngles.x > 75){
+            bladeTrans.localEulerAngles = new Vector3(bladeMinAngle,0,0);
         }
         else{
-            bladeTrans.localEulerAngles = new Vector3(angle,0,0);
+            bladeTrans.Rotate(new Vector3(-1,0,0) * finishTurnSpeed * Time.deltaTime);
         }
+
+        // if(bladeTrans.localEulerAngles.x > angle){
+        //     bladeTrans.Rotate(new Vector3(-1,0,0) * finishTurnSpeed * Time.deltaTime);
+
+        // }
+        // else{
+        //     bladeTrans.localEulerAngles = new Vector3(angle,0,0);
+        // }
 
         
     }
