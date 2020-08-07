@@ -20,6 +20,8 @@ public class RangeDetector : MonoBehaviour
     private const float bladeMaxAngle = 75.0f;
     private const float bladeMinAngle = 0.0f;
 
+    private float catchToFinish = 0.0f;
+
     void Update(){
 
 
@@ -27,11 +29,12 @@ public class RangeDetector : MonoBehaviour
         switch(chairMovement.chairStatus){
             case ChairMovement.ChairStatus.Catch:{
                 TurnVertical();
+                //reset count
                 break;
             }
 
             case ChairMovement.ChairStatus.Rowing:{
-
+                catchToFinish += Time.deltaTime;
                 break;
             }
             case ChairMovement.ChairStatus.Finish:{
@@ -68,6 +71,9 @@ public class RangeDetector : MonoBehaviour
             statusText.text = "Finish";
             chairMovement.chairStatus = ChairMovement.ChairStatus.Finish;
             chairMovement.boat.SetCatch(false);
+            //end count
+            chairMovement.countTime = catchToFinish;
+            catchToFinish = 0.0f;
         }
 
         else if(other.tag == "Catch Zone"){
@@ -83,6 +89,8 @@ public class RangeDetector : MonoBehaviour
         if(other.tag == "Catch Zone" ){
             statusText.text = "Rowing";
             chairMovement.chairStatus = ChairMovement.ChairStatus.Rowing;
+            //start count
+            chairMovement.countTime = 0;
         }
         else if(other.tag == "Finish Zone"){
             statusText.text = "Recovery";
@@ -114,14 +122,6 @@ public class RangeDetector : MonoBehaviour
         else{
             bladeTrans.Rotate(new Vector3(-1,0,0) * finishTurnSpeed * Time.deltaTime);
         }
-
-        // if(bladeTrans.localEulerAngles.x > angle){
-        //     bladeTrans.Rotate(new Vector3(-1,0,0) * finishTurnSpeed * Time.deltaTime);
-
-        // }
-        // else{
-        //     bladeTrans.localEulerAngles = new Vector3(angle,0,0);
-        // }
 
         
     }

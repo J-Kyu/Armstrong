@@ -53,7 +53,7 @@ public class Boat : MonoBehaviour
             //count time 값이 들어가야한다.
             powerCoeffcient.fillAmount = 1.0f;
             isSummed =false;
-            powerLevel = 0;
+            SetPowerLevel(0);
             
         }
 
@@ -71,12 +71,17 @@ public class Boat : MonoBehaviour
         for(int i = 0; i< chairMovementsList.Count; i++){
                 powerCoeffcientTime += chairMovementsList[i].countTime;
         }
-
+        Debug.Log(powerCoeffcientTime);
         isSummed = true;
     }
 
     public void IncreasePowerLevel(){
         powerLevel++;
+        poewrLevel.text = string.Format("{0}x",powerLevel);
+    }
+
+    public void SetPowerLevel(int level){
+        powerLevel = level;
         poewrLevel.text = string.Format("{0}x",powerLevel);
     }
 }
