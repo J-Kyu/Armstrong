@@ -25,6 +25,8 @@ public class Boat : MonoBehaviour
 
     private bool isSummed = false;
 
+    private bool firstRowing = false;
+
 
 
     void Start(){
@@ -63,6 +65,10 @@ public class Boat : MonoBehaviour
         this.isCatch = isCatch;
     }
 
+    public void SetFirstRowing(bool isFirst){
+        firstRowing = isFirst;
+    }
+
     private void SumCountTime(){
         if(isSummed){
             return;
@@ -83,5 +89,18 @@ public class Boat : MonoBehaviour
     public void SetPowerLevel(int level){
         powerLevel = level;
         poewrLevel.text = string.Format("{0}x",powerLevel);
+    }
+
+    public void ResetCountTime(){
+
+        if(!firstRowing){
+            return;
+        }
+
+        for(int i = 0; i< chairMovementsList.Count; i++){
+                chairMovementsList[i].countTime = 0;
+        }
+
+        firstRowing = false;
     }
 }
