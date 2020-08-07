@@ -632,6 +632,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.00096
       objectReference: {fileID: 0}
+    - target: {fileID: 8968792256107420355, guid: 9bbda8ac74f4c4abcbb33173f0053056,
+        type: 3}
+      propertyPath: boat
+      value: 
+      objectReference: {fileID: 6626451659391981568}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bbda8ac74f4c4abcbb33173f0053056, type: 3}
 --- !u!224 &4428756163756363318 stripped
@@ -784,6 +789,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7599698153539707345, guid: 87cb2c0c778ae4667bfad238bbfc621e,
+        type: 3}
+      propertyPath: boat
+      value: 
+      objectReference: {fileID: 6626451659391981568}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87cb2c0c778ae4667bfad238bbfc621e, type: 3}
 --- !u!114 &1687268557043041737 stripped

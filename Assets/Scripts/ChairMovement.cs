@@ -23,6 +23,10 @@ public class ChairMovement : MonoBehaviour
 
     private bool isSelected = false;   
 
+    public Boat boat = null;
+
+    public float countTime = 1.0f;
+
     [SerializeField] private Transform oarTrans = null;
 
     [SerializeField] private CircleCollider2D rangeTouchCollider = null; 
@@ -31,6 +35,11 @@ public class ChairMovement : MonoBehaviour
     [SerializeField] private OarSide oarSide;
 
     public ChairStatus chairStatus = ChairStatus.Recovery;
+
+
+    void Start(){
+        countTime = 1.0f;
+    }
 
     void Update(){
         Rowing();

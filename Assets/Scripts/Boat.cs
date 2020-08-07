@@ -8,9 +8,11 @@ public class Boat : MonoBehaviour
 
     [SerializeField] private List<ChairMovement> chairMovementsList = null;
 
-    private List<bool> chairMovementCatchList = new List<bool>();
+    private List<float> chairMovementCountTime = new List<float>();
 
     [SerializeField] private Image powerCoeffcient= null;
+
+    [SerializeField] private Text poewrLevel = null;
 
 
     private float limitedPowerTime = 1.0f;
@@ -19,10 +21,18 @@ public class Boat : MonoBehaviour
 
     private bool isCatch = false;
 
+    private float powerCoeffcientTime;
+
+    private bool isSummed = false;
+
+
+
     void Start(){
 
+        powerCoeffcientTime = 0.0f;
+
         for(int i = 0; i < chairMovementsList.Count; i++){
-            chairMovementCatchList.Add(false);
+            chairMovementCountTime.Add(0.0f);
         }
     }
 
@@ -30,36 +40,43 @@ public class Boat : MonoBehaviour
 
 
         if(isCatch){
-            //run PowerCoefficient
-            powerCoeffcient.fillAmount -= Time.deltaTime;
-            for( int i = 0; i < chairMovementsList.Count; i++){
-                if(chairMovementsList[i].chairStatus == ChairMovement.ChairStatus.Catch && chairMovementCatchList[i] != true){
-                    chairMovementCatchList[i] = true;
-                    powerLevel++;        
-                }
+            //start power coefficient
+            SumCountTime();
+            powerCoeffcient.fillAmount -= 1.0f/(powerCoeffcientTime)* Time.deltaTime;
+
+            if(powerCoeffcient.fillAmount <= 0.01f){
+                isCatch = false;
             }
-
-
+            
         }
         else{
-            CheckCatch();
+            //count time 값이 들어가야한다.
+            powerCoeffcient.fillAmount = 1.0f;
+            isSummed =false;
+            powerLevel = 0;
+            
         }
-        
+
     }
 
-
-    private void CheckCatch(){
-
-        for( int i = 0; i < chairMovementsList.Count; i++){
-            if(chairMovementsList[i].chairStatus == ChairMovement.ChairStatus.Catch){
-                powerLevel++;
-                chairMovementCatchList[i] = true;
-                isCatch = true;
-
-                return;
-            }
-        }
-        isCatch = false;
+    public void SetCatch(bool isCatch){
+        this.isCatch = isCatch;
     }
 
+    private void SumCountTime(){
+        if(isSummed){
+            return;
+        }
+
+        for(int i = 0; i< chairMovementsList.Count; i++){
+                powerCoeffcientTime += chairMovementsList[i].countTime;
+        }
+
+        isSummed = true;
+    }
+
+    public void IncreasePowerLevel(){
+        powerLevel++;
+        poewrLevel.text = string.Format("{0}x",powerLevel);
+    }
 }

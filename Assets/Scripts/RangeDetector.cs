@@ -67,11 +67,15 @@ public class RangeDetector : MonoBehaviour
 
             statusText.text = "Finish";
             chairMovement.chairStatus = ChairMovement.ChairStatus.Finish;
+            chairMovement.boat.SetCatch(false);
         }
 
         else if(other.tag == "Catch Zone"){
             statusText.text = "Catch";
             chairMovement.chairStatus = ChairMovement.ChairStatus.Catch;
+            chairMovement.boat.SetCatch(true);
+            chairMovement.boat.IncreasePowerLevel();
+            
         }
     }
 
