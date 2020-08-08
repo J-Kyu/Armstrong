@@ -35,6 +35,7 @@ public class RangeDetector : MonoBehaviour
 
             case ChairMovement.ChairStatus.Rowing:{
                 catchToFinish += Time.deltaTime;
+                //speed
                 break;
             }
             case ChairMovement.ChairStatus.Finish:{
@@ -70,18 +71,24 @@ public class RangeDetector : MonoBehaviour
 
             statusText.text = "Finish";
             chairMovement.chairStatus = ChairMovement.ChairStatus.Finish;
-            chairMovement.boat.SetCatch(false);
-            chairMovement.boat.ResetCountTime();
+
             //end count
             chairMovement.countTime = catchToFinish;
             catchToFinish = 0.0f;
+
+
         }
 
         else if(other.tag == "Catch Zone"){
             statusText.text = "Catch";
             chairMovement.chairStatus = ChairMovement.ChairStatus.Catch;
-            chairMovement.boat.SetCatch(true);
-            chairMovement.boat.IncreasePowerLevel();
+            chairMovement.boat.isCatch = true;
+            //set rest of player count time ( if not ready, set as default 1s)
+            //this is whole function in boat
+            chairMovement.boat.ObtainEachCountTime();
+
+            //reset all count time
+            chairMovement.countTime = 0.0f;
             
         }
     }
@@ -90,7 +97,9 @@ public class RangeDetector : MonoBehaviour
         if(other.tag == "Catch Zone" ){
             statusText.text = "Rowing";
             chairMovement.chairStatus = ChairMovement.ChairStatus.Rowing;
-            chairMovement.boat.SetFirstRowing(true);
+            chairMovement.boat.isCatch = false;
+            
+            //start count
         }
         else if(other.tag == "Finish Zone"){
             statusText.text = "Recovery";

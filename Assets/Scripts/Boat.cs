@@ -19,13 +19,9 @@ public class Boat : MonoBehaviour
 
     private int powerLevel = 0;
 
-    private bool isCatch = false;
+    public bool isCatch = false;
 
     private float powerCoeffcientTime;
-
-    private bool isSummed = false;
-
-    private bool firstRowing = false;
 
 
 
@@ -40,10 +36,7 @@ public class Boat : MonoBehaviour
 
     void Update(){
 
-
         if(isCatch){
-            //start power coefficient
-            SumCountTime();
             powerCoeffcient.fillAmount -= 1.0f/(powerCoeffcientTime)* Time.deltaTime;
 
             if(powerCoeffcient.fillAmount <= 0.01f){
@@ -54,53 +47,24 @@ public class Boat : MonoBehaviour
         else{
             //count time 값이 들어가야한다.
             powerCoeffcient.fillAmount = 1.0f;
-            isSummed =false;
-            SetPowerLevel(0);
+        }
+    }
+
+
+    public void ObtainEachCountTime(){
+        //first catch enter time
+        powerCoeffcientTime = 0.0f;
+
+        for(int i = 0; i < chairMovementsList.Count; i++){
+            if(chairMovementsList[i].chairStatus == ChairMovement.ChairStatus.Catch){
+                powerCoeffcientTime += chairMovementsList[i].countTime;
+            }
+            else{
+                powerCoeffcientTime += 0.5f;
+            }
             
         }
-
     }
 
-    public void SetCatch(bool isCatch){
-        this.isCatch = isCatch;
-    }
-
-    public void SetFirstRowing(bool isFirst){
-        firstRowing = isFirst;
-    }
-
-    private void SumCountTime(){
-        if(isSummed){
-            return;
-        }
-
-        for(int i = 0; i< chairMovementsList.Count; i++){
-                powerCoeffcientTime += chairMovementsList[i].countTime;
-        }
-        Debug.Log(powerCoeffcientTime);
-        isSummed = true;
-    }
-
-    public void IncreasePowerLevel(){
-        powerLevel++;
-        poewrLevel.text = string.Format("{0}x",powerLevel);
-    }
-
-    public void SetPowerLevel(int level){
-        powerLevel = level;
-        poewrLevel.text = string.Format("{0}x",powerLevel);
-    }
-
-    public void ResetCountTime(){
-
-        if(!firstRowing){
-            return;
-        }
-
-        for(int i = 0; i< chairMovementsList.Count; i++){
-                chairMovementsList[i].countTime = 0;
-        }
-
-        firstRowing = false;
-    }
+   
 }
