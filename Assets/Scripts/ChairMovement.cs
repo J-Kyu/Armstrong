@@ -63,7 +63,7 @@ public class ChairMovement : MonoBehaviour
        
         isSelected = true;
         ChairSelected();
-        LogContent.instance.SaveLog(this.gameObject.name, "Mouse Down");
+        
 
     }
 
@@ -77,7 +77,7 @@ public class ChairMovement : MonoBehaviour
 
         MoveChair(currentMousePos);
  
-        LogContent.instance.SaveLog(this.gameObject.name, "Mouse Drag"); 
+        
                  
     }
      void OnMouseUp(){
@@ -94,7 +94,7 @@ public class ChairMovement : MonoBehaviour
         isSelected = false;
 
         ChairReleased();
-        LogContent.instance.SaveLog(this.gameObject.name, "Mouse Up");
+        
     }
 
 
@@ -108,7 +108,7 @@ public class ChairMovement : MonoBehaviour
 
         Vector3 movePos =  touchPosition - origTouchPos;
 
-        LogContent.instance.SaveLog(this.gameObject.name, "movePos: "+touchPosition);
+        
  
         //선 위치 후 판단
         // this.gameObject.transform.position = new Vector3(origTargetPos.x, origTargetPos.y+movePos.y,origTargetPos.z);   
