@@ -12,12 +12,12 @@ public class Boat : MonoBehaviour
 
     [SerializeField] private Image powerCoeffcient= null;
 
-    [SerializeField] private Text poewrLevel = null;
+    [SerializeField] private Text powerLevelText = null;
 
 
     private float limitedPowerTime = 1.0f;
 
-    private int powerLevel = 0;
+    public int powerLevel = 0;
 
     public bool isCatch = false;
 
@@ -41,6 +41,8 @@ public class Boat : MonoBehaviour
 
             if(powerCoeffcient.fillAmount <= 0.01f){
                 isCatch = false;
+                powerLevel = 0;
+                SetPowerLevel();
             }
             
         }
@@ -64,6 +66,10 @@ public class Boat : MonoBehaviour
             }
             
         }
+    }
+
+    public void SetPowerLevel(){
+        powerLevelText.text = string.Format("{0} x",powerLevel);
     }
 
    

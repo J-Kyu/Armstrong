@@ -3968,5 +3968,10 @@ PrefabInstance:
       propertyPath: poewrLevel
       value: 
       objectReference: {fileID: 834965759}
+    - target: {fileID: 6626451659391981568, guid: 504554f2f5ca74ad0a60f6c2dda5a63c,
+        type: 3}
+      propertyPath: powerLevelText
+      value: 
+      objectReference: {fileID: 834965759}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 504554f2f5ca74ad0a60f6c2dda5a63c, type: 3}

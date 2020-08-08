@@ -87,6 +87,9 @@ public class RangeDetector : MonoBehaviour
             //this is whole function in boat
             chairMovement.boat.ObtainEachCountTime();
 
+            chairMovement.boat.powerLevel++;
+            chairMovement.boat.SetPowerLevel();
+
             //reset all count time
             chairMovement.countTime = 0.0f;
             
@@ -98,7 +101,8 @@ public class RangeDetector : MonoBehaviour
             statusText.text = "Rowing";
             chairMovement.chairStatus = ChairMovement.ChairStatus.Rowing;
             chairMovement.boat.isCatch = false;
-            
+            chairMovement.boat.powerLevel = 0;
+            chairMovement.boat.SetPowerLevel();
             //start count
         }
         else if(other.tag == "Finish Zone"){
