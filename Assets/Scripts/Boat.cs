@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 public class Boat : MonoBehaviour
 {
+    enum BoatPowerStatus {Power, NoPower}
 
     [SerializeField] private List<ChairMovement> chairMovementsList = null;
-
     private List<float> chairMovementCountTime = new List<float>();
-
     [SerializeField] private Image powerCoeffcient= null;
-
     [SerializeField] private Text powerLevelText = null;
+
+    [SerializeField] private WaveLine waveLine = null;
 
 
     private float limitedPowerTime = 1.0f;
@@ -23,11 +23,17 @@ public class Boat : MonoBehaviour
 
     private float powerCoeffcientTime;
 
+    private BoatPowerStatus boatPowerStatus;
+
+    private float powerTime;
 
 
     void Start(){
 
+        boatPowerStatus = BoatPowerStatus.NoPower;
+
         powerCoeffcientTime = 0.0f;
+        powerTime = 0.0f;
 
         for(int i = 0; i < chairMovementsList.Count; i++){
             chairMovementCountTime.Add(0.0f);
@@ -36,12 +42,34 @@ public class Boat : MonoBehaviour
 
     void Update(){
 
+        powerTime += Time.deltaTime;
+
+        float speed = 0.0f;
+        for(int j = 0 ; j < chairMovementsList.Count; j++){
+            speed += chairMovementsList[j].speed;
+        }
+
+
+        for(int i = 0 ; i < chairMovementsList.Count; i++){
+            if(chairMovementsList[i].chairStatus == ChairMovement.ChairStatus.Rowing){
+                boatPowerStatus = BoatPowerStatus.Power;
+                //Do Power
+                powerTime  = 0.0f;
+                break;
+            }
+            else{
+                boatPowerStatus = BoatPowerStatus.NoPower;
+            }
+
+        }
+
+        waveLine.CalSpeed(powerTime,powerLevel,speed);
+
         if(isCatch){
             powerCoeffcient.fillAmount -= 1.0f/(powerCoeffcientTime)* Time.deltaTime;
 
             if(powerCoeffcient.fillAmount <= 0.01f){
                 isCatch = false;
-                powerLevel = 0;
                 SetPowerLevel();
             }
             
@@ -70,6 +98,10 @@ public class Boat : MonoBehaviour
 
     public void SetPowerLevel(){
         powerLevelText.text = string.Format("{0} x",powerLevel);
+    }
+
+    public void ResetPowerLevel(){
+        powerLevel = 0;
     }
 
    

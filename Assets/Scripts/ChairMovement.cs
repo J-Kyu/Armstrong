@@ -27,6 +27,8 @@ public class ChairMovement : MonoBehaviour
 
     public float countTime = 1.0f;
 
+    public float speed;
+
     [SerializeField] private Transform oarTrans = null;
 
     [SerializeField] private CircleCollider2D rangeTouchCollider = null; 
@@ -34,10 +36,11 @@ public class ChairMovement : MonoBehaviour
 
     [SerializeField] private OarSide oarSide;
 
-    public ChairStatus chairStatus = ChairStatus.Recovery;
+    public ChairStatus chairStatus ;
 
 
     void Start(){
+        chairStatus = ChairStatus.Recovery;
         countTime = 1.0f;
     }
 

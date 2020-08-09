@@ -21,8 +21,8 @@ public class RangeDetector : MonoBehaviour
     private const float bladeMinAngle = 0.0f;
 
     private float catchToFinish = 0.0f;
-
     private float pastPos;
+
     void Update(){
 
 
@@ -36,6 +36,7 @@ public class RangeDetector : MonoBehaviour
 
             case ChairMovement.ChairStatus.Rowing:{
                 catchToFinish += Time.deltaTime;
+
                CalculateSpeed();
                 //speed
                 break;
@@ -76,9 +77,11 @@ public class RangeDetector : MonoBehaviour
 
             //end count
             chairMovement.countTime = catchToFinish;
-            catchToFinish = 0.0f;
             CalculateSpeed();
-
+            catchToFinish = 0.0f;
+            
+            chairMovement.boat.ResetPowerLevel();
+            chairMovement.boat.SetPowerLevel();
 
         }
 
@@ -104,8 +107,8 @@ public class RangeDetector : MonoBehaviour
             statusText.text = "Rowing";
             chairMovement.chairStatus = ChairMovement.ChairStatus.Rowing;
             chairMovement.boat.isCatch = false;
-            chairMovement.boat.powerLevel = 0;
-            chairMovement.boat.SetPowerLevel();
+
+            pastPos = bladeTrans.position.y;
             
             //speed
             pastPos = bladeTrans.position.y;
@@ -144,11 +147,10 @@ public class RangeDetector : MonoBehaviour
 
     private void CalculateSpeed(){
         
-        float delta =  bladeTrans.position.y - pastPos;
-
+        float delta =  bladeTrans.position.y - pastPos ;
         pastPos = bladeTrans.position.y;
-        Debug.Log(delta);
-        LogContent.instance.SaveLog("RnageDetector","delta: "+delta);
+
+       chairMovement.speed = delta/catchToFinish;
     }
     
 }

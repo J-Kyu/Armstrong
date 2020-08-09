@@ -7,20 +7,18 @@ public class WaveLine : MonoBehaviour
     
     [SerializeField] List<Transform> waveTransformsList = null;
 
-    private float boatPower = 1.0f;
-    private float basicSpeed = 1.0f;
+    private float basicSpeed = 0.0f;
+
     void Update(){
         Waving();
     }
 
     private void Waving(){
 
-        basicSpeed = Mathf.Abs(Mathf.Sin(Time.time))*0.05f;
-
         for(int i = 0; i < waveTransformsList.Count; i++){
             if(waveTransformsList[i].localPosition.y  < 2560.0f){
                 
-                waveTransformsList[i].Translate( new Vector3(0, basicSpeed*boatPower,0));   
+                waveTransformsList[i].Translate( new Vector3(0, basicSpeed,0));   
 
             }
             else{
@@ -29,18 +27,20 @@ public class WaveLine : MonoBehaviour
         }
     }
 
-    public void IncreaseSpeed(){
-        boatPower += 0.5f;
-    }
+    public void CalSpeed(float powerTime,int powerLevel, float powerSpeed){
+        
 
-    public void DecreaseSpeed(){
-
-
-        boatPower -= 0.5f;
-
-        if(boatPower <= 0.0f){
-            boatPower = 1.0f;
+        if(powerTime > Mathf.PI/2){
+           basicSpeed = 0.0f;
+           return;
         }
+
+
+
+        basicSpeed = Mathf.Abs(Mathf.Cos(powerTime))*powerSpeed*0.01f;
+        Debug.Log(basicSpeed);
+        // basicSpeed =0.01f;
+
     }
 
 
