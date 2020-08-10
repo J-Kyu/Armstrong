@@ -7,7 +7,7 @@ public class Boat : MonoBehaviour
 {
     enum BoatPowerStatus {Power, NoPower}
 
-    [SerializeField] private List<ChairMovement> chairMovementsList = null;
+    public List<ChairMovement> chairMovementsList = null;
     private List<float> chairMovementCountTime = new List<float>();
     [SerializeField] private Image powerCoeffcient= null;
     [SerializeField] private Text powerLevelText = null;
