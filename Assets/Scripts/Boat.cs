@@ -12,6 +12,8 @@ public class Boat : MonoBehaviour
     [SerializeField] private Image powerCoeffcient= null;
     [SerializeField] private Text powerLevelText = null;
 
+    [SerializeField] private Text powerSpeed = null;
+
     [SerializeField] private WaveLine waveLine = null;
 
 
@@ -62,6 +64,16 @@ public class Boat : MonoBehaviour
             }
 
         }
+
+
+
+        if( powerTime > Mathf.PI/2){
+            powerSpeed.text = string.Format("{0:F0} watt",0);    
+        }        
+        else{
+            powerSpeed.text = string.Format("{0:F1} watt",Mathf.Abs(Mathf.Cos(powerTime))*speed*10);
+        }
+
 
         waveLine.CalSpeed(powerTime,powerLevel,speed);
 

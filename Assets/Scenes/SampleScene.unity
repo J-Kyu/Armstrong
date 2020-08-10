@@ -657,6 +657,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 210351032}
   m_CullTransparentMesh: 0
+--- !u!114 &228322976 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4171723402167024329, guid: 504554f2f5ca74ad0a60f6c2dda5a63c,
+    type: 3}
+  m_PrefabInstance: {fileID: 9009202218238505383}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &242185349
 GameObject:
   m_ObjectHideFlags: 0
@@ -3564,5 +3576,10 @@ PrefabInstance:
       propertyPath: waveLine
       value: 
       objectReference: {fileID: 1247623054}
+    - target: {fileID: 6626451659391981568, guid: 504554f2f5ca74ad0a60f6c2dda5a63c,
+        type: 3}
+      propertyPath: powerSpeed
+      value: 
+      objectReference: {fileID: 228322976}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 504554f2f5ca74ad0a60f6c2dda5a63c, type: 3}
