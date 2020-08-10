@@ -51,15 +51,11 @@ public class TouchObject : MonoBehaviour
               
                         break;
                     }
+                    default:{
+                        LogContent.instance.SaveLog(this.gameObject.name, "Touch Start");
+                        break;
+                    }
                 }
-                // if(hit.collider.transform.tag == "Chair")
-                // {
-                //     //register collider chair
-                //     chairDic.Add(Input.GetTouch(i).fingerId, hit.transform.gameObject);
-                //     hit.transform.gameObject.GetComponent<ChairMovement>().ChairSelected();
-
-                //     LogContent.instance.SaveLog(this.gameObject.name, "Touch Start");
-                // }
             }
 
             if (hit.collider != null && Input.GetTouch(i).phase == TouchPhase.Moved)
@@ -76,14 +72,12 @@ public class TouchObject : MonoBehaviour
               
                         break;
                     }
+                    default:{
+                        LogContent.instance.SaveLog(this.gameObject.name, "Touch Start");
+                        break;
+                    }
+                    
                 }
-
-
-                // if(hit.collider.transform.tag == "Chair")
-                // {
-                //     //translate            
-                //     hit.transform.GetComponent<ChairMovement>().MoveChair(Input.GetTouch(i).position);
-                // }
             }
         }
     
@@ -102,7 +96,21 @@ public class TouchObject : MonoBehaviour
 
             if(!keyExist){
                 //remove
-                chairDic[key].GetComponent<ChairMovement>().ChairReleased();
+                switch(chairDic[key].transform.tag){
+                    case "Chair":{
+                        chairDic[key].GetComponent<ChairMovement>().ChairReleased();
+                        break;
+                    }
+                    case "MasterChair":{
+
+                        chairDic[key].GetComponent<MasterChairMovement>().ChairReleased();
+                        break;
+                    }
+                    default:{
+                        LogContent.instance.SaveLog(this.gameObject.name, "Touch Start");
+                        break;
+                    }
+                }        
                 chairDic.Remove(key);
             }
             keyExist = false;
