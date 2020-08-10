@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 243048389845516242}
   - component: {fileID: 1513209738000819292}
   - component: {fileID: 8968792256107420355}
-  - component: {fileID: 2519993121730358483}
   m_Layer: 5
   m_Name: Player
   m_TagString: Chair
@@ -94,7 +93,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 35
+  m_Radius: 40
 --- !u!50 &1513209738000819292
 Rigidbody2D:
   serializedVersion: 4
@@ -129,27 +128,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boundaryTrans: {fileID: 243048391260351395}
+  boat: {fileID: 0}
+  countTime: 1
+  speed: 0
   oarTrans: {fileID: 1513209736963271801}
   rangeTouchCollider: {fileID: 243048389845516242}
   rangeTouchObject: {fileID: 5278098670702337141}
   oarSide: 0
   chairStatus: 3
---- !u!58 &2519993121730358483
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 243048389845516233}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 35
 --- !u!1 &243048390581586188
 GameObject:
   m_ObjectHideFlags: 0
