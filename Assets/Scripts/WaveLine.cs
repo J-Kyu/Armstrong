@@ -37,8 +37,8 @@ public class WaveLine : MonoBehaviour
 
 
 
-        basicSpeed = Mathf.Abs(Mathf.Cos(powerTime))*powerSpeed*0.01f;
-        Debug.Log(basicSpeed);
+        basicSpeed = Mathf.Abs(Mathf.Cos(powerTime))*powerSpeed*0.005f;
+
         // basicSpeed =0.01f;
 
     }
