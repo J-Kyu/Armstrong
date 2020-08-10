@@ -34,23 +34,56 @@ public class TouchObject : MonoBehaviour
             //first touch
             if (hit.collider != null && Input.GetTouch(i).phase == TouchPhase.Began)
             {
-                if(hit.collider.transform.tag == "Chair")
-                {
-                    //register collider chair
-                    chairDic.Add(Input.GetTouch(i).fingerId, hit.transform.gameObject);
-                    hit.transform.gameObject.GetComponent<ChairMovement>().ChairSelected();
+                switch(hit.collider.transform.tag){
+                    case "Chair":{
+                        chairDic.Add(Input.GetTouch(i).fingerId, hit.transform.gameObject);
+                        hit.transform.gameObject.GetComponent<ChairMovement>().ChairSelected();
 
-                    LogContent.instance.SaveLog(this.gameObject.name, "Touch Start");
+                        LogContent.instance.SaveLog(this.gameObject.name, "Touch Start");
+                        break;
+                    }
+                    case "MasterChair":{
+
+                        chairDic.Add(Input.GetTouch(i).fingerId, hit.transform.gameObject);
+                        hit.transform.gameObject.GetComponent<MasterChairMovement>().ChairSelected();
+
+                        LogContent.instance.SaveLog(this.gameObject.name, "Touch Start");
+              
+                        break;
+                    }
                 }
+                // if(hit.collider.transform.tag == "Chair")
+                // {
+                //     //register collider chair
+                //     chairDic.Add(Input.GetTouch(i).fingerId, hit.transform.gameObject);
+                //     hit.transform.gameObject.GetComponent<ChairMovement>().ChairSelected();
+
+                //     LogContent.instance.SaveLog(this.gameObject.name, "Touch Start");
+                // }
             }
 
             if (hit.collider != null && Input.GetTouch(i).phase == TouchPhase.Moved)
             {
-                if(hit.collider.transform.tag == "Chair")
-                {
-                    //translate            
-                    hit.transform.GetComponent<ChairMovement>().MoveChair(Input.GetTouch(i).position);
+
+                switch(hit.collider.transform.tag){
+                    case "Chair":{
+                         hit.transform.GetComponent<ChairMovement>().MoveChair(Input.GetTouch(i).position);
+                        break;
+                    }
+                    case "MasterChair":{
+
+                         hit.transform.GetComponent<MasterChairMovement>().MoveChair(Input.GetTouch(i).position);
+              
+                        break;
+                    }
                 }
+
+
+                // if(hit.collider.transform.tag == "Chair")
+                // {
+                //     //translate            
+                //     hit.transform.GetComponent<ChairMovement>().MoveChair(Input.GetTouch(i).position);
+                // }
             }
         }
     
