@@ -71,7 +71,7 @@ public class Boat : MonoBehaviour
             powerSpeed.text = string.Format("{0:F0} watt",0);    
         }        
         else{
-            powerSpeed.text = string.Format("{0:F1} watt",Mathf.Abs(Mathf.Cos(powerTime))*speed*10);
+            powerSpeed.text = string.Format("{0:F0} watt",Mathf.Abs(Mathf.Cos(powerTime))*speed*10);
         }
 
 

@@ -2454,6 +2454,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1484327914}
   m_CullTransparentMesh: 0
+--- !u!58 &1484911572 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 7376177037174986123, guid: 504554f2f5ca74ad0a60f6c2dda5a63c,
+    type: 3}
+  m_PrefabInstance: {fileID: 9009202218238505383}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1540690333
 GameObject:
   m_ObjectHideFlags: 0
@@ -3581,5 +3587,10 @@ PrefabInstance:
       propertyPath: powerSpeed
       value: 
       objectReference: {fileID: 228322976}
+    - target: {fileID: 328448216922351694, guid: 504554f2f5ca74ad0a60f6c2dda5a63c,
+        type: 3}
+      propertyPath: rangeTouchCollider
+      value: 
+      objectReference: {fileID: 1484911572}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 504554f2f5ca74ad0a60f6c2dda5a63c, type: 3}
