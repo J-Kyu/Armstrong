@@ -80,7 +80,6 @@ public class RangeDetector : MonoBehaviour
             CalculateSpeed();
             catchToFinish = 0.0f;
             
-            chairMovement.boat.ResetPowerLevel();
             chairMovement.boat.SetPowerLevel();
 
         }
@@ -91,8 +90,11 @@ public class RangeDetector : MonoBehaviour
             chairMovement.boat.isCatch = true;
             //set rest of player count time ( if not ready, set as default 1s)
             //this is whole function in boat
-            chairMovement.boat.ObtainEachCountTime();
 
+            chairMovement.boat.ResetPowerLevel();
+
+            chairMovement.boat.ObtainEachCountTime();
+            
             chairMovement.boat.powerLevel++;
             chairMovement.boat.SetPowerLevel();
 
