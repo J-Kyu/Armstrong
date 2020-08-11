@@ -148,8 +148,13 @@ public class RangeDetector : MonoBehaviour
     private void CalculateSpeed(){
         
         float delta =  bladeTrans.position.y - pastPos ;
+
+
+
         pastPos = bladeTrans.position.y;
         delta *= 10.0f;
+
+
 
         Debug.Log("Time: "+catchToFinish+"\t Delta: "+delta);    
 

@@ -68,7 +68,9 @@ public class Boat : MonoBehaviour
                 boatPowerStatus = BoatPowerStatus.Power;
                 //Do Power
                 totalSpeed += speed*0.01f;
-                totalSpeed *= (1.0f+powerLevel*0.01f);
+                if(speed > 0.1f){
+                    totalSpeed *= (1.0f+powerLevel*0.01f);
+                }
                 break;
             }
             else{
@@ -86,6 +88,7 @@ public class Boat : MonoBehaviour
         }
         else if(totalSpeed > 1.0f){
             //if total speed is begger than 1.0f, it too much.......
+            Debug.Log("Over Pace"+totalSpeed);
             totalSpeed = 1.0f;
         }        
 
