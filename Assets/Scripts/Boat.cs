@@ -27,7 +27,12 @@ public class Boat : MonoBehaviour
 
     private BoatPowerStatus boatPowerStatus;
 
-    private float powerTime;
+    // private float powerTime;
+
+    private float totalSpeed;
+
+    private float tempSpeed;
+    private float waterPower = 0.005f;
 
 
     void Start(){
@@ -35,7 +40,9 @@ public class Boat : MonoBehaviour
         boatPowerStatus = BoatPowerStatus.NoPower;
 
         powerCoeffcientTime = 0.0f;
-        powerTime = 0.0f;
+        // powerTime = 0.0f;
+        totalSpeed = 0.0f;
+        tempSpeed = 0.0f;
 
         for(int i = 0; i < chairMovementsList.Count; i++){
             chairMovementCountTime.Add(0.0f);
@@ -44,19 +51,20 @@ public class Boat : MonoBehaviour
 
     void Update(){
 
-        powerTime += Time.deltaTime;
+        // powerTime += Time.deltaTime;
 
         float speed = 0.0f;
         for(int j = 0 ; j < chairMovementsList.Count; j++){
             speed += chairMovementsList[j].speed;
         }
-
+        
 
         for(int i = 0 ; i < chairMovementsList.Count; i++){
             if(chairMovementsList[i].chairStatus == ChairMovement.ChairStatus.Rowing){
                 boatPowerStatus = BoatPowerStatus.Power;
                 //Do Power
-                powerTime  = 0.0f;
+                totalSpeed += speed*0.01f;
+                totalSpeed += powerLevel * 0.01f;
                 break;
             }
             else{
@@ -67,15 +75,16 @@ public class Boat : MonoBehaviour
 
 
 
-        if( powerTime > Mathf.PI/2){
-            powerSpeed.text = string.Format("{0:F0} watt",0);    
+        totalSpeed -= waterPower;
+        
+        if( totalSpeed < 0.0f){
+            totalSpeed = 0.0f;
         }        
-        else{
-            powerSpeed.text = string.Format("{0:F0} watt",Mathf.Abs(Mathf.Cos(powerTime))*speed*10*powerLevel);
-        }
 
-
-        waveLine.CalSpeed(powerTime,powerLevel,speed);
+        
+        powerSpeed.text = string.Format("{0:F0} watt",totalSpeed*1000);
+        
+        waveLine.CalSpeed(totalSpeed);
 
         if(isCatch){
             powerCoeffcient.fillAmount -= 1.0f/(powerCoeffcientTime)* Time.deltaTime;
@@ -113,8 +122,11 @@ public class Boat : MonoBehaviour
     }
 
     public void ResetPowerLevel(){
+        
         powerLevel = 0;
     }
-
+    public void ReCalSpeed(){
+        tempSpeed = totalSpeed;
+    }
    
 }

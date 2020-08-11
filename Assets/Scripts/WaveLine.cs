@@ -27,18 +27,9 @@ public class WaveLine : MonoBehaviour
         }
     }
 
-    public void CalSpeed(float powerTime,int powerLevel, float powerSpeed){
-        
-
-        if(powerTime > Mathf.PI/2){
-           basicSpeed = 0.0f;
-           return;
-        }
-
-
-
-        basicSpeed = Mathf.Abs(Mathf.Cos(powerTime))*powerLevel*powerSpeed*0.01f;
-        // basicSpeed =0.01f;
+    public void CalSpeed(float powerSpeed){
+    
+        basicSpeed = powerSpeed;
 
     }
 

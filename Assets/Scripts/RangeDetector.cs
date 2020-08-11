@@ -80,7 +80,9 @@ public class RangeDetector : MonoBehaviour
             CalculateSpeed();
             catchToFinish = 0.0f;
             
+            chairMovement.boat.ResetPowerLevel();
             chairMovement.boat.SetPowerLevel();
+
 
         }
 
@@ -91,11 +93,10 @@ public class RangeDetector : MonoBehaviour
             //set rest of player count time ( if not ready, set as default 1s)
             //this is whole function in boat
 
-            chairMovement.boat.ResetPowerLevel();
-
             chairMovement.boat.ObtainEachCountTime();
-            
+
             chairMovement.boat.powerLevel++;
+            Debug.Log(chairMovement.boat.powerLevel);
             chairMovement.boat.SetPowerLevel();
 
             //reset all count time
@@ -112,8 +113,7 @@ public class RangeDetector : MonoBehaviour
 
             pastPos = bladeTrans.position.y;
             
-            //speed
-            pastPos = bladeTrans.position.y;
+            chairMovement.boat.ReCalSpeed();
         }
         else if(other.tag == "Finish Zone"){
             statusText.text = "Recovery";
@@ -156,8 +156,6 @@ public class RangeDetector : MonoBehaviour
             Debug.Log(catchToFinish);
             catchToFinish = 0.01f;
         }
-
-        Debug.Log(catchToFinish);
        chairMovement.speed = delta/catchToFinish;
     }
     
