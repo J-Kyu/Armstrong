@@ -32,7 +32,7 @@ public class Boat : MonoBehaviour
     private float totalSpeed;
 
     private float tempSpeed;
-    private float waterPower = 0.005f;
+    private float waterPower = 0.002f;
 
 
     void Start(){
@@ -79,6 +79,9 @@ public class Boat : MonoBehaviour
         
         if( totalSpeed < 0.0f){
             totalSpeed = 0.0f;
+        }
+        else if(totalSpeed > 1.0f){
+            totalSpeed = 1.0f;
         }        
 
         

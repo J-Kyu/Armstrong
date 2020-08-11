@@ -151,6 +151,7 @@ public class RangeDetector : MonoBehaviour
         
         float delta =  bladeTrans.position.y - pastPos ;
         pastPos = bladeTrans.position.y;
+        delta *= 0.5f;
 
         if(catchToFinish < 0.01f){
             Debug.Log(catchToFinish);
