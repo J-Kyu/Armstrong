@@ -89,10 +89,7 @@ public class ChairMovement : MonoBehaviour
             return;
         }
 
-        // if(targetTrans !=  null){
-        //         targetTrans.position = new Vector3(origTargetPos.x,origTargetPos.y,origTargetPos.z);
-        //     }
-            
+
         targetTrans = null;    
         isSelected = false;
 

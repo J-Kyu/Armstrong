@@ -35,9 +35,9 @@ public class RangeDetector : MonoBehaviour
             }
 
             case ChairMovement.ChairStatus.Rowing:{
-                catchToFinish += Time.deltaTime;
+                catchToFinish += Time.deltaTime*10.0f;
 
-               CalculateSpeed();
+                CalculateSpeed();
                 //speed
                 break;
             }
@@ -112,8 +112,6 @@ public class RangeDetector : MonoBehaviour
             chairMovement.boat.isCatch = false;
 
             pastPos = bladeTrans.position.y;
-            
-            chairMovement.boat.ReCalSpeed();
         }
         else if(other.tag == "Finish Zone"){
             statusText.text = "Recovery";
@@ -151,13 +149,15 @@ public class RangeDetector : MonoBehaviour
         
         float delta =  bladeTrans.position.y - pastPos ;
         pastPos = bladeTrans.position.y;
-        delta *= 0.5f;
+        delta *= 10.0f;
 
-        if(catchToFinish < 0.01f){
-            Debug.Log(catchToFinish);
-            catchToFinish = 0.01f;
+        Debug.Log("Time: "+catchToFinish+"\t Delta: "+delta);    
+
+        if(catchToFinish < 1.0f){
+            catchToFinish = 1.0f;
         }
        chairMovement.speed = delta/catchToFinish;
+       ///catchToFinish;
     }
     
 }

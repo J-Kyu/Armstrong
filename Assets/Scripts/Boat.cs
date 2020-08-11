@@ -12,6 +12,8 @@ public class Boat : MonoBehaviour
     [SerializeField] private Image powerCoeffcient= null;
     [SerializeField] private Text powerLevelText = null;
 
+    [SerializeField] private Text recordText = null;
+
     [SerializeField] private Text powerSpeed = null;
 
     [SerializeField] private WaveLine waveLine = null;
@@ -31,8 +33,9 @@ public class Boat : MonoBehaviour
 
     private float totalSpeed;
 
-    private float tempSpeed;
     private float waterPower = 0.002f;
+
+    private float record = 0.0f;
 
 
     void Start(){
@@ -40,9 +43,10 @@ public class Boat : MonoBehaviour
         boatPowerStatus = BoatPowerStatus.NoPower;
 
         powerCoeffcientTime = 0.0f;
-        // powerTime = 0.0f;
+
         totalSpeed = 0.0f;
-        tempSpeed = 0.0f;
+        record = 0.0f;
+
 
         for(int i = 0; i < chairMovementsList.Count; i++){
             chairMovementCountTime.Add(0.0f);
@@ -64,7 +68,7 @@ public class Boat : MonoBehaviour
                 boatPowerStatus = BoatPowerStatus.Power;
                 //Do Power
                 totalSpeed += speed*0.01f;
-                totalSpeed += powerLevel * 0.01f;
+                totalSpeed *= (1.0f+powerLevel*0.01f);
                 break;
             }
             else{
@@ -78,16 +82,20 @@ public class Boat : MonoBehaviour
         totalSpeed -= waterPower;
         
         if( totalSpeed < 0.0f){
-            totalSpeed = 0.0f;
+            totalSpeed = -waterPower;
         }
         else if(totalSpeed > 1.0f){
+            //if total speed is begger than 1.0f, it too much.......
             totalSpeed = 1.0f;
         }        
 
         
         powerSpeed.text = string.Format("{0:F0} watt",totalSpeed*1000);
-        
         waveLine.CalSpeed(totalSpeed);
+        
+        record += totalSpeed;
+        SetRecord();
+
 
         if(isCatch){
             powerCoeffcient.fillAmount -= 1.0f/(powerCoeffcientTime)* Time.deltaTime;
@@ -128,8 +136,14 @@ public class Boat : MonoBehaviour
         
         powerLevel = 0;
     }
-    public void ReCalSpeed(){
-        tempSpeed = totalSpeed;
+
+    private void SetRecord(){
+        recordText.text = string.Format("{0:F0} m",record);
     }
-   
+
+    public void ResetRecord(){
+        record = 0.0f;
+        SetRecord();
+    }
+
 }
