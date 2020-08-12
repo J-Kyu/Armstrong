@@ -111,14 +111,14 @@ public class ChairMovement : MonoBehaviour
         
  
         //선 위치 후 판단
-        // this.gameObject.transform.position = new Vector3(origTargetPos.x, origTargetPos.y+movePos.y,origTargetPos.z);   
+
         this.gameObject.transform.Translate( new Vector3(0, movePos.y * chairSpeed,0));   
 
         if( this.gameObject.transform.localPosition.y < -boundaryTrans.rect.height/2 ){
-            this.gameObject.transform.localPosition = new Vector3(origTargetPos.x, -boundaryTrans.rect.height/2,0);   
+            this.gameObject.transform.localPosition = new Vector3(0, -boundaryTrans.rect.height/2,0);   
         }   
         else if( this.gameObject.transform.localPosition.y > boundaryTrans.rect.height/2){
-            this.gameObject.transform.localPosition = new Vector3(origTargetPos.x, boundaryTrans.rect.height/2,0);   
+            this.gameObject.transform.localPosition = new Vector3(0, boundaryTrans.rect.height/2,0);   
         }   
 
     }
