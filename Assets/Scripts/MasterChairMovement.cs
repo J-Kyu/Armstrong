@@ -120,7 +120,7 @@ public class MasterChairMovement : MonoBehaviour
         for(int i = 0 ; i < boat.chairMovementsList.Count; i++){
 
             Vector3 chairPos = boat.chairMovementsList[i].gameObject.transform.localPosition;
-            boat.chairMovementsList[i].gameObject.transform.localPosition = new Vector3(chairPos.x, this.gameObject.transform.localPosition.y - origTouchPos.y,chairPos.z);   
+            boat.chairMovementsList[i].gameObject.transform.localPosition = new Vector3(chairPos.x, this.gameObject.transform.localPosition.y - origTouchPos.y,0);   
 
         }
 
