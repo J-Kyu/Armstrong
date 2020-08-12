@@ -39,7 +39,7 @@ public class TouchObject : MonoBehaviour
                         chairDic.Add(Input.GetTouch(i).fingerId, hit.transform.gameObject);
                         hit.transform.gameObject.GetComponent<ChairMovement>().ChairSelected();
 
-                        LogContent.instance.SaveLog(this.gameObject.name, "Touch Start");
+                        LogContent.instance.SaveLog(this.gameObject.name, "Chair: Touch Start");
                         break;
                     }
                     case "MasterChair":{
@@ -47,12 +47,12 @@ public class TouchObject : MonoBehaviour
                         chairDic.Add(Input.GetTouch(i).fingerId, hit.transform.gameObject);
                         hit.transform.gameObject.GetComponent<MasterChairMovement>().ChairSelected();
 
-                        LogContent.instance.SaveLog(this.gameObject.name, "Touch Start");
+                        LogContent.instance.SaveLog(this.gameObject.name, "MasterChair: Touch Start");
               
                         break;
                     }
                     default:{
-                        LogContent.instance.SaveLog(this.gameObject.name, "Touch Start");
+                        LogContent.instance.SaveLog(this.gameObject.name, "1: No Tag");
                         break;
                     }
                 }
@@ -73,7 +73,7 @@ public class TouchObject : MonoBehaviour
                         break;
                     }
                     default:{
-                        LogContent.instance.SaveLog(this.gameObject.name, "Touch Start");
+                        LogContent.instance.SaveLog(this.gameObject.name, "2: No Tag");
                         break;
                     }
                     
@@ -107,7 +107,7 @@ public class TouchObject : MonoBehaviour
                         break;
                     }
                     default:{
-                        LogContent.instance.SaveLog(this.gameObject.name, "Touch Start");
+                        LogContent.instance.SaveLog(this.gameObject.name, "3: No Tag");
                         break;
                     }
                 }        
