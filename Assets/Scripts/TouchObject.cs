@@ -64,13 +64,11 @@ public class TouchObject : MonoBehaviour
                 switch(hit.collider.transform.tag){
                     case "Chair":{
                          hit.transform.GetComponent<ChairMovement>().MoveChair(Input.GetTouch(i).position);
-                         LogContent.instance.SaveLog(this.gameObject.name, "Chair: Moving");
                         break;
                     }
                     case "MasterChair":{
 
                          hit.transform.GetComponent<MasterChairMovement>().MoveChair(Input.GetTouch(i).position);
-                         LogContent.instance.SaveLog(this.gameObject.name, "MasterChair: Moving");
               
                         break;
                     }

@@ -115,10 +115,10 @@ public class ChairMovement : MonoBehaviour
         this.gameObject.transform.Translate( new Vector3(0, movePos.y * chairSpeed,0));   
 
         if( this.gameObject.transform.localPosition.y < -boundaryTrans.rect.height/2 ){
-            this.gameObject.transform.localPosition = new Vector3(origTargetPos.x, -boundaryTrans.rect.height/2,origTargetPos.z);   
+            this.gameObject.transform.localPosition = new Vector3(origTargetPos.x, -boundaryTrans.rect.height/2,0);   
         }   
         else if( this.gameObject.transform.localPosition.y > boundaryTrans.rect.height/2){
-            this.gameObject.transform.localPosition = new Vector3(origTargetPos.x, boundaryTrans.rect.height/2,origTargetPos.z);   
+            this.gameObject.transform.localPosition = new Vector3(origTargetPos.x, boundaryTrans.rect.height/2,0);   
         }   
 
     }
