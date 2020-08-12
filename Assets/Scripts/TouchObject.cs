@@ -52,7 +52,7 @@ public class TouchObject : MonoBehaviour
                         break;
                     }
                     default:{
-                        LogContent.instance.SaveLog(this.gameObject.name, "1: No Tag");
+                        LogContent.instance.SaveLog(this.gameObject.name, "1: No Tag: "+hit.collider.transform.tag);
                         break;
                     }
                 }
@@ -73,7 +73,7 @@ public class TouchObject : MonoBehaviour
                         break;
                     }
                     default:{
-                        LogContent.instance.SaveLog(this.gameObject.name, "2: No Tag");
+                        LogContent.instance.SaveLog(this.gameObject.name, "2: No Tag: "+hit.collider.transform.name);
                         break;
                     }
                     
@@ -107,7 +107,7 @@ public class TouchObject : MonoBehaviour
                         break;
                     }
                     default:{
-                        LogContent.instance.SaveLog(this.gameObject.name, "3: No Tag");
+                        LogContent.instance.SaveLog(this.gameObject.name, "3: No Tag: "+chairDic[key].transform.tag);
                         break;
                     }
                 }        
