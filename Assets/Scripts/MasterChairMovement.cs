@@ -8,7 +8,7 @@ public class MasterChairMovement : MonoBehaviour
 
     public enum ChairStatus{Catch,Rowing, Finish, Recovery}
 
-    private float chairSpeed = 0.2f;
+    private float chairSpeed = 0.9f;
 
     private Vector3 MousePosition;
 

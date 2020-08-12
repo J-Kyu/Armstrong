@@ -669,18 +669,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 210351032}
   m_CullTransparentMesh: 0
---- !u!114 &228322976 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4171723402167024329, guid: 504554f2f5ca74ad0a60f6c2dda5a63c,
-    type: 3}
-  m_PrefabInstance: {fileID: 9009202218238505383}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &242185349
 GameObject:
   m_ObjectHideFlags: 0
@@ -1807,18 +1795,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 815511679}
   m_CullTransparentMesh: 0
---- !u!114 &834965759 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1879534262119356686, guid: 504554f2f5ca74ad0a60f6c2dda5a63c,
-    type: 3}
-  m_PrefabInstance: {fileID: 9009202218238505383}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &883068987
 GameObject:
   m_ObjectHideFlags: 0
@@ -2596,12 +2572,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1484327914}
   m_CullTransparentMesh: 0
---- !u!58 &1484911572 stripped
-CircleCollider2D:
-  m_CorrespondingSourceObject: {fileID: 7376177037174986123, guid: 504554f2f5ca74ad0a60f6c2dda5a63c,
-    type: 3}
-  m_PrefabInstance: {fileID: 9009202218238505383}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1540690333
 GameObject:
   m_ObjectHideFlags: 0
@@ -3869,6 +3839,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boat _2x
       objectReference: {fileID: 0}
+    - target: {fileID: 6626451659391981568, guid: 504554f2f5ca74ad0a60f6c2dda5a63c,
+        type: 3}
+      propertyPath: recordText
+      value: 
+      objectReference: {fileID: 1981690737}
+    - target: {fileID: 6626451659391981568, guid: 504554f2f5ca74ad0a60f6c2dda5a63c,
+        type: 3}
+      propertyPath: waveLine
+      value: 
+      objectReference: {fileID: 1247623054}
     - target: {fileID: 4854176853590920802, guid: 504554f2f5ca74ad0a60f6c2dda5a63c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3974,40 +3954,5 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6626451659391981568, guid: 504554f2f5ca74ad0a60f6c2dda5a63c,
-        type: 3}
-      propertyPath: poewrLevel
-      value: 
-      objectReference: {fileID: 834965759}
-    - target: {fileID: 6626451659391981568, guid: 504554f2f5ca74ad0a60f6c2dda5a63c,
-        type: 3}
-      propertyPath: powerLevelText
-      value: 
-      objectReference: {fileID: 834965759}
-    - target: {fileID: 6626451659391981568, guid: 504554f2f5ca74ad0a60f6c2dda5a63c,
-        type: 3}
-      propertyPath: waveLine
-      value: 
-      objectReference: {fileID: 1247623054}
-    - target: {fileID: 6626451659391981568, guid: 504554f2f5ca74ad0a60f6c2dda5a63c,
-        type: 3}
-      propertyPath: powerSpeed
-      value: 
-      objectReference: {fileID: 228322976}
-    - target: {fileID: 6626451659391981568, guid: 504554f2f5ca74ad0a60f6c2dda5a63c,
-        type: 3}
-      propertyPath: recordText
-      value: 
-      objectReference: {fileID: 1981690737}
-    - target: {fileID: 3198792269079543500, guid: 504554f2f5ca74ad0a60f6c2dda5a63c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 328448216922351694, guid: 504554f2f5ca74ad0a60f6c2dda5a63c,
-        type: 3}
-      propertyPath: rangeTouchCollider
-      value: 
-      objectReference: {fileID: 1484911572}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 504554f2f5ca74ad0a60f6c2dda5a63c, type: 3}
