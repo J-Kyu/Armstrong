@@ -359,8 +359,9 @@ MonoBehaviour:
   - {fileID: 1687268557043041737}
   - {fileID: 4782519840761126392}
   powerCoeffcient: {fileID: 1442756700123131033}
-  powerLevelText: {fileID: 0}
-  powerSpeed: {fileID: 0}
+  powerLevelText: {fileID: 1879534262119356686}
+  recordText: {fileID: 0}
+  powerSpeed: {fileID: 4171723402167024329}
   waveLine: {fileID: 0}
   powerLevel: 0
   isCatch: 0
@@ -818,11 +819,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3704064167291158811, guid: 7482b8df57f9640da99e576bd50e5e66,
         type: 3}
+      propertyPath: rangeTouchCollider
+      value: 
+      objectReference: {fileID: 7376177037174986123}
+    - target: {fileID: 3704064167291158811, guid: 7482b8df57f9640da99e576bd50e5e66,
+        type: 3}
       propertyPath: boat
       value: 
       objectReference: {fileID: 6626451659391981568}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7482b8df57f9640da99e576bd50e5e66, type: 3}
+--- !u!58 &7376177037174986123 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 5887588700440083678, guid: 7482b8df57f9640da99e576bd50e5e66,
+    type: 3}
+  m_PrefabInstance: {fileID: 4028922135134136661}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &7376177038045291348 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5887588699838204417, guid: 7482b8df57f9640da99e576bd50e5e66,
@@ -1112,11 +1124,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1.9974422
-      objectReference: {fileID: 0}
-    - target: {fileID: 1612142450203898399, guid: 87cb2c0c778ae4667bfad238bbfc621e,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7599698153539707345, guid: 87cb2c0c778ae4667bfad238bbfc621e,
         type: 3}
