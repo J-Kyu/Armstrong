@@ -9,6 +9,20 @@ public class WaveLine : MonoBehaviour
 
     private float basicSpeed = 0.0f;
 
+    void Awake(){
+
+        Debug.Log(Screen.width);
+        Debug.Log(Screen.height);
+        for(int i = 0; i < waveTransformsList.Count; i++){
+
+            RectTransform rt = waveTransformsList[i].GetComponent<RectTransform>();
+            rt.sizeDelta = new Vector2(0.0f,Screen.height);
+        }
+
+
+
+    }
+
     void Update(){
         Waving();
     }
@@ -16,13 +30,13 @@ public class WaveLine : MonoBehaviour
     private void Waving(){
 
         for(int i = 0; i < waveTransformsList.Count; i++){
-            if(waveTransformsList[i].localPosition.y  < 2560.0f){
+            if(waveTransformsList[i].localPosition.y  < Screen.height){
                 
                 waveTransformsList[i].Translate( new Vector3(0, basicSpeed,0));   
 
             }
             else{
-                waveTransformsList[i].localPosition = new Vector3(0,-2560.0f,0);
+                waveTransformsList[i].localPosition = new Vector3(0,-Screen.height,0);
             }
         }
     }
