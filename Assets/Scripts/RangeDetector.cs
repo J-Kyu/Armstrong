@@ -18,7 +18,7 @@ public class RangeDetector : MonoBehaviour
     [SerializeField] private Text deltaText = null;
     [SerializeField] private Text speedText = null;
 
-    private const float catchTurnSpeed = 90.0f;
+    private const float catchTurnSpeed = 120.0f;
     private const float finishTurnSpeed = 150.0f;
 
     private const float bladeMaxAngle = 75.0f;
@@ -167,8 +167,8 @@ public class RangeDetector : MonoBehaviour
         if(catchToFinish < 1.0f){
             catchToFinish = 1.0f;
         }
-        
-        chairMovement.speed = delta/catchToFinish;
+
+        chairMovement.speed = (delta/catchToFinish)*(bladeTrans.localEulerAngles.x*100.0f)/7500.0f;
         speedText.text = string.Format("Speed: {0:F3}",chairMovement.speed);  
     }
     
