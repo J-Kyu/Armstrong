@@ -60,6 +60,7 @@ public class Boat : MonoBehaviour
         float speed = 0.0f;
         for(int j = 0 ; j < chairMovementsList.Count; j++){
             speed += chairMovementsList[j].speed;
+            chairMovementsList[j].speed = 0.0f;
         }
         
 

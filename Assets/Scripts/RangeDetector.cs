@@ -13,6 +13,10 @@ public class RangeDetector : MonoBehaviour
     [SerializeField] private Transform bladeTrans = null;
 
     [SerializeField] private Text turnPercetageText = null;
+    
+    [SerializeField] private Text catchToFinishText = null;
+    [SerializeField] private Text deltaText = null;
+    [SerializeField] private Text speedText = null;
 
     private const float catchTurnSpeed = 90.0f;
     private const float finishTurnSpeed = 150.0f;
@@ -24,6 +28,9 @@ public class RangeDetector : MonoBehaviour
     private float pastPos;
 
     void Update(){
+
+
+        catchToFinishText.text = string.Format("Time: {0:F3}",catchToFinish); 
 
 
 
@@ -82,7 +89,6 @@ public class RangeDetector : MonoBehaviour
             
             chairMovement.boat.ResetPowerLevel();
             chairMovement.boat.SetPowerLevel();
-
 
         }
 
@@ -154,15 +160,16 @@ public class RangeDetector : MonoBehaviour
         pastPos = bladeTrans.position.y;
         delta *= 10.0f;
 
+        deltaText.text = string.Format("Delta: {0:F3}",delta);
 
-
-        Debug.Log("Time: "+catchToFinish+"\t Delta: "+delta);    
+    
 
         if(catchToFinish < 1.0f){
             catchToFinish = 1.0f;
         }
-       chairMovement.speed = delta/catchToFinish;
-       ///catchToFinish;
+        
+        chairMovement.speed = delta/catchToFinish;
+        speedText.text = string.Format("Speed: {0:F3}",chairMovement.speed);  
     }
     
 }
