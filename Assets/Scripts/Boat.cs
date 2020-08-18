@@ -19,6 +19,7 @@ public class Boat : MonoBehaviour
     [SerializeField] private WaveLine waveLine = null;
 
 
+
     private float limitedPowerTime = 1.0f;
 
     public int powerLevel = 0;
@@ -29,24 +30,24 @@ public class Boat : MonoBehaviour
 
     private BoatPowerStatus boatPowerStatus;
 
-    // private float powerTime;
-
     private float totalSpeed;
 
     private float waterPower = 0.001f;
 
-    private float record = 0.0f;
+    public float record = 0.0f;
+
+    public float maxRecord = 0.0f;
+
+    private float bestSpeed = 0.0f;
+
+    private float avgSpeed = 0.0f;
+
+    private float totalTime = 0.0f;
+
+    private bool isFinish = false;
 
 
     void Start(){
-
-        boatPowerStatus = BoatPowerStatus.NoPower;
-
-        powerCoeffcientTime = 0.0f;
-
-        totalSpeed = 0.0f;
-        record = 0.0f;
-
 
         for(int i = 0; i < chairMovementsList.Count; i++){
             chairMovementCountTime.Add(0.0f);
@@ -55,29 +56,48 @@ public class Boat : MonoBehaviour
 
     void Update(){
 
-        // powerTime += Time.deltaTime;
+        //after coroutine 3s, count time
+        
+
 
         float speed = 0.0f;
         for(int j = 0 ; j < chairMovementsList.Count; j++){
             speed += chairMovementsList[j].speed;
             chairMovementsList[j].speed = 0.0f;
         }
+
+
+        //when finished
+        if(record <= 0.0f){
+
+            FinishRowing();
+            isFinish = true;
+
+        }
         
 
-        for(int i = 0 ; i < chairMovementsList.Count; i++){
-            if(chairMovementsList[i].chairStatus == ChairMovement.ChairStatus.Rowing){
-                boatPowerStatus = BoatPowerStatus.Power;
-                //Do Power
-                totalSpeed += speed*0.01f;
-                if(speed > 0.1f){
-                    totalSpeed *= (1.0f+powerLevel*0.01f);
-                }
-                break;
-            }
-            else{
-                boatPowerStatus = BoatPowerStatus.NoPower;
-            }
 
+        //cal speed and record time
+        if(!isFinish){
+        
+            totalTime += Time.deltaTime;
+            
+
+            for(int i = 0 ; i < chairMovementsList.Count; i++){
+                if(chairMovementsList[i].chairStatus == ChairMovement.ChairStatus.Rowing){
+                    boatPowerStatus = BoatPowerStatus.Power;
+                    //Do Power
+                    totalSpeed += speed*0.01f;
+                    if(speed > 0.1f){
+                        totalSpeed *= (1.0f+powerLevel*0.01f);
+                    }
+                    break;
+                }
+                else{
+                    boatPowerStatus = BoatPowerStatus.NoPower;
+                }
+
+            }
         }
 
 
@@ -97,10 +117,25 @@ public class Boat : MonoBehaviour
         powerSpeed.text = string.Format("{0:F0} watt",totalSpeed*1000);
         waveLine.CalSpeed(totalSpeed);
         
-        record += totalSpeed;
+        record -= totalSpeed;
         SetRecord();
 
+        //best speed
+        if(bestSpeed < totalSpeed*1000){
+            bestSpeed = totalSpeed*1000;
+        }
 
+        //avg speed
+        if(avgSpeed < 0.01f){
+            avgSpeed = totalSpeed * 1000;
+        }
+        else if(!isFinish){
+            avgSpeed += totalSpeed * 1000;
+            avgSpeed /= 2;
+        }
+
+
+        //power coeffactor
         if(isCatch){
             powerCoeffcient.fillAmount -= 1.0f/(powerCoeffcientTime)* Time.deltaTime;
 
@@ -145,9 +180,43 @@ public class Boat : MonoBehaviour
         recordText.text = string.Format("{0:F0} m",record);
     }
 
-    public void ResetRecord(){
+    // public void ResetRecord(){
+    //     record = 0.0f;
+    //     SetRecord();
+    // }
+
+    public void ResetBoat(){
+
+        isFinish = false;
+
+        boatPowerStatus = BoatPowerStatus.NoPower;
+
+        waterPower = 0.001f;
+
         record = 0.0f;
+
+        maxRecord = 0.0f;
+
+        limitedPowerTime = 1.0f;
+
+        powerLevel = 0;
+
+        bestSpeed = 0.0f;
+
+        avgSpeed = 0.0f;
+
+        totalTime = 0.0f;
+
         SetRecord();
+
+
+    }
+
+    private void FinishRowing(){
+
+            record = 0.0f;
+            FinishRecordUI.instance.TurnOnFinishRecord((int)maxRecord,totalTime,bestSpeed,avgSpeed);
+            powerLevel = 0;
     }
 
 }
