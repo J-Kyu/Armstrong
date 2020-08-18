@@ -187,6 +187,8 @@ public class Boat : MonoBehaviour
 
     public void ResetBoat(){
 
+        waveLine.CalSpeed(0.0f);
+
         isFinish = false;
 
         boatPowerStatus = BoatPowerStatus.NoPower;
@@ -210,6 +212,7 @@ public class Boat : MonoBehaviour
         SetRecord();
 
 
+
     }
 
     private void FinishRowing(){
@@ -217,6 +220,8 @@ public class Boat : MonoBehaviour
             record = 0.0f;
             FinishRecordUI.instance.TurnOnFinishRecord((int)maxRecord,totalTime,bestSpeed,avgSpeed);
             powerLevel = 0;
+            waterPower = 0.01f;
+            totalSpeed = 0.02f;
     }
 
 }

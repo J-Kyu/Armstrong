@@ -439,6 +439,8 @@ MonoBehaviour:
   waveLine: {fileID: 0}
   powerLevel: 0
   isCatch: 0
+  record: 0
+  maxRecord: 0
 --- !u!1 &6411631981163323850
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,7 +812,7 @@ PrefabInstance:
     - target: {fileID: 5887588699838204417, guid: 7482b8df57f9640da99e576bd50e5e66,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1187
+      value: -1222
       objectReference: {fileID: 0}
     - target: {fileID: 5887588699838204417, guid: 7482b8df57f9640da99e576bd50e5e66,
         type: 3}
