@@ -15,6 +15,8 @@ public class ArmstrongManager : MonoBehaviour
 
     [SerializeField] private GameObject introObject = null;
 
+    public BoatType boatType;
+
 
     public void ReturnToIntro(){
         boat2x.gameObject.SetActive(false);

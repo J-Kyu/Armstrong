@@ -21,45 +21,64 @@ public class IntroButtons : MonoBehaviour
     [SerializeField] private GameObject gameUIObject = null;
 
 
-    [SerializeField] private Boat boat = null;
+    [SerializeField] private Boat boat2x = null;
+
+    [SerializeField] private Boat boat4x = null;
 
 
 
 
 
     public void Run500mRecord(){
-        
-        StartGame();
-        boat.record = 500.0f;
-        boat.maxRecord = 500.0f;        
-
+        StartGame(500.0f);
     }
 
 
     public void Run1000mRecord(){
-
-        StartGame();
-        boat.record = 1000.0f;
-        boat.maxRecord = 1000.0f;
-        
+        StartGame(1000.0f);
     }
 
 
     public void Run2000mRecord(){
-        
-        StartGame();
-        boat.record = 2000.0f;
-        boat.maxRecord = 2000.0f;
+        StartGame(2000.0f);
     }
 
-    private void StartGame(){
+    private void StartGame(float length){
         waveObject.SetActive(true);
-        boat.gameObject.SetActive(true);
-        boat.ResetBoat();
         gameUIObject.SetActive(true);
         introObject.SetActive(false);
+        GenerateBoat(length);
 
     }
+
+    private void GenerateBoat(float length){
+        switch(ArmstrongManager.instance.boatType){
+
+         case BoatType.x2:{
+                boat2x.gameObject.SetActive(true);
+                boat2x.ResetBoat();
+                boat2x.record = length;
+                boat2x.maxRecord = length;
+                break;
+            }
+            case BoatType.x4:{
+                boat4x.gameObject.SetActive(true);
+                boat4x.ResetBoat();
+                boat4x.record = length;
+                boat4x.maxRecord = length;
+                break;
+            }
+            default:{   
+                boat2x.gameObject.SetActive(true);
+                boat2x.ResetBoat();
+                boat2x.record = length;
+                boat2x.maxRecord = length;
+                break;
+            }
+        }
+    }
+
+    
 
 
 }
