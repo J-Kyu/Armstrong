@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 3704064167291158811}
   m_Layer: 5
   m_Name: Player
-  m_TagString: Chair
+  m_TagString: MasterChair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

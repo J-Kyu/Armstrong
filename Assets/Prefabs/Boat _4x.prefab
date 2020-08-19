@@ -854,6 +854,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5887588700440083653, guid: 7482b8df57f9640da99e576bd50e5e66,
+        type: 3}
+      propertyPath: m_TagString
+      value: MasterChair
+      objectReference: {fileID: 0}
     - target: {fileID: 3704064167291158811, guid: 7482b8df57f9640da99e576bd50e5e66,
         type: 3}
       propertyPath: boat
