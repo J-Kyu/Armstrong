@@ -864,8 +864,19 @@ PrefabInstance:
       propertyPath: boat
       value: 
       objectReference: {fileID: 98946466897872783}
+    - target: {fileID: 3704064167291158811, guid: 7482b8df57f9640da99e576bd50e5e66,
+        type: 3}
+      propertyPath: rangeTouchCollider
+      value: 
+      objectReference: {fileID: 6650719482838900844}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7482b8df57f9640da99e576bd50e5e66, type: 3}
+--- !u!58 &6650719482838900844 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 5887588700440083678, guid: 7482b8df57f9640da99e576bd50e5e66,
+    type: 3}
+  m_PrefabInstance: {fileID: 1006819066338630834}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6650719482232805043 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5887588699838204417, guid: 7482b8df57f9640da99e576bd50e5e66,
