@@ -38,8 +38,14 @@ public class ChairMovement : MonoBehaviour
 
     public ChairStatus chairStatus ;
 
+    private float rangeTouchRadius;
+
 
     void Start(){
+
+        rangeTouchRadius = rangeTouchObject.GetComponent<RectTransform>().sizeDelta.x;
+
+        Debug.Log(rangeTouchRadius);
         chairStatus = ChairStatus.Recovery;
         countTime = 1.0f;
     }
@@ -120,6 +126,21 @@ public class ChairMovement : MonoBehaviour
         else if( this.gameObject.transform.localPosition.y > boundaryTrans.rect.height/2){
             this.gameObject.transform.localPosition = new Vector3(0, boundaryTrans.rect.height/2,0);   
         }   
+
+ 
+        //Range Touch 조절 (world Position)
+        Vector2 chairRelativeTouch = this.gameObject.transform.InverseTransformPoint(touchPosition);
+        float newRadius = Mathf.Sqrt(Mathf.Pow(this.gameObject.transform.position.x - chairRelativeTouch.x,2.0f) + Mathf.Pow(this.gameObject.transform.position.y - chairRelativeTouch.y,2.0f));
+        float ratio = 1.0f;
+        if(newRadius < 85.0f){
+            ratio = (85.0f - newRadius)/ 85.0f;
+        }
+        else{
+            ratio = 0.0f;
+        }
+        
+        rangeTouchObject.transform.localScale = new Vector2(ratio,ratio);
+        rangeTouchObject.transform.localPosition = new Vector2(-chairRelativeTouch.x,-chairRelativeTouch.y);
 
     }
 
