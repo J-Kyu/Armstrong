@@ -13,11 +13,11 @@ public class WaveLine : MonoBehaviour
 
         Debug.Log(Screen.width);
         Debug.Log(Screen.height);
-        for(int i = 0; i < waveTransformsList.Count; i++){
+        // for(int i = 0; i < waveTransformsList.Count; i++){
 
-            RectTransform rt = waveTransformsList[i].GetComponent<RectTransform>();
-            rt.sizeDelta = new Vector2(0.0f,Screen.height);
-        }
+        //     RectTransform rt = waveTransformsList[i].GetComponent<RectTransform>();
+        //     rt.sizeDelta = new Vector2(0.0f,Screen.height);
+        // }
 
 
 
@@ -28,7 +28,7 @@ public class WaveLine : MonoBehaviour
     }
 
     private void Waving(){
-
+        //waving
         for(int i = 0; i < waveTransformsList.Count; i++){
             if(waveTransformsList[i].localPosition.y  < Screen.height){
                 

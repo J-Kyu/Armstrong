@@ -32,7 +32,7 @@ public class Boat : MonoBehaviour
 
     private float totalSpeed;
 
-    private float waterPower = 0.001f;
+    private float waterPower = 0.00005f;
 
     public float record = 0.0f;
 
